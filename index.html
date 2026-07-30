@@ -600,9 +600,11 @@
   }
 
   /* ---------- pedido direto ---------- */
+  const TAXA_AVISO = "Obs: cobro uma taxa fixa de R$ 50 para ir até as lojas e buscar os melhores preços pra você. Em compras acima de R$ 200 esse valor é abatido do total da compra — abaixo disso, a taxa é mantida.";
+
   function sendDirectOrder(product, variantesEscolhidas) {
     const detalhes = variantesEscolhidas ? Object.values(variantesEscolhidas).join(" · ") : "";
-    const msg = `Olá! Sou ${cliente.nome} e quero pedir:\n\n${product.nome}${detalhes ? ` (${detalhes})` : ""}\n\nMeu telefone: ${cliente.telefone}\nEndereço de entrega: ${cliente.endereco}`;
+    const msg = `Olá! Sou ${cliente.nome} e quero pedir:\n\n${product.nome}${detalhes ? ` (${detalhes})` : ""}\n\nMeu telefone: ${cliente.telefone}\nEndereço de entrega: ${cliente.endereco}\n\n${TAXA_AVISO}`;
     window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
   }
 
@@ -733,7 +735,7 @@
     }
     $("#brand-error").textContent = "";
 
-    const msg = `Olá! Sou ${cliente.nome} e quero pedir um produto da marca ${currentBrand.nome}:\n\nProduto: ${produto}\n\nMeu telefone: ${cliente.telefone}\nEndereço de entrega: ${cliente.endereco}`;
+    const msg = `Olá! Sou ${cliente.nome} e quero pedir um produto da marca ${currentBrand.nome}:\n\nProduto: ${produto}\n\nMeu telefone: ${cliente.telefone}\nEndereço de entrega: ${cliente.endereco}\n\n${TAXA_AVISO}`;
 
     if (navigator.canShare && navigator.canShare({ files: [file] })) {
       try {
@@ -741,13 +743,32 @@
         $("#brand-overlay").classList.remove("open");
         return;
       } catch (e) {
-        // usuária cancelou o compartilhamento ou o navegador falhou — cai no link abaixo
+        // usuária cancelou o compartilhamento — não força o fallback, só fecha
+        if (e && e.name === "AbortError") {
+          $("#brand-overlay").classList.remove("open");
+          return;
+        }
+        // outro erro no compartilhamento — cai no fallback abaixo
       }
     }
 
-    window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg + "\n\n(vou anexar a foto do produto aqui na conversa)")}`, "_blank");
+    // navegador não suporta enviar a foto junto (comum em desktop): baixa a foto
+    // com nome claro e abre o WhatsApp avisando pra anexar ela na conversa
+    downloadFile(file, `foto-${currentBrand.id}-${produto.slice(0, 20)}`);
+    const msgComAviso = msg + "\n\n(a foto do produto foi salva no seu computador — é só arrastar ela pra essa conversa)";
+    window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msgComAviso)}`, "_blank");
     $("#brand-overlay").classList.remove("open");
   });
+
+  function downloadFile(file, baseName) {
+    const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(file);
+    a.download = `${baseName}.${ext}`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
 
   function renderTabs() {
     const tabs = $("#cat-tabs");
@@ -800,7 +821,7 @@
     }
     $("#custom-error").textContent = "";
     requireLogin(() => {
-      const msg = `Olá! Sou ${cliente.nome} e estou procurando um produto sob encomenda:\n\n"${text}"\n\n(vou te mandar uma foto de referência aqui pelo WhatsApp)\n\nMeu telefone: ${cliente.telefone}\nEndereço de entrega: ${cliente.endereco}`;
+      const msg = `Olá! Sou ${cliente.nome} e estou procurando um produto sob encomenda:\n\n"${text}"\n\n(vou te mandar uma foto de referência aqui pelo WhatsApp)\n\nMeu telefone: ${cliente.telefone}\nEndereço de entrega: ${cliente.endereco}\n\n${TAXA_AVISO}`;
       window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
       $("#custom-message").value = "";
     });
