@@ -104,6 +104,24 @@
   }
 
   /* ---------- hero ---------- */
+  .deadline-banner {
+    background: var(--coral); color: #fff; text-align: center;
+    padding: 0.9rem 1rem; font-size: 1rem;
+  }
+  .deadline-banner p { margin: 0; letter-spacing: 0.01em; }
+  .deadline-banner strong { font-weight: 800; }
+
+  .wa-fab {
+    position: fixed; bottom: 1.4rem; right: 1.4rem; z-index: 60;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #25d366; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+    transition: transform 0.15s ease;
+  }
+  .wa-fab:hover { transform: scale(1.06); }
+  .wa-fab:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
   .hero { padding: 3.2rem 0 2.2rem; }
   .hero .eyebrow {
     font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase;
@@ -295,6 +313,10 @@
   </div>
 </nav>
 
+<div class="deadline-banner">
+  <p><strong>Encomendas abertas até dia 02</strong> — depois disso, só na próxima viagem</p>
+</div>
+
 <header class="hero wrap">
   <p class="eyebrow">Curadoria · direto de Ciudad del Este</p>
   <h1 class="display">O desejo chegou.<br>Falta só buscar.</h1>
@@ -430,6 +452,12 @@
     </div>
   </div>
 </div>
+
+<a id="wa-help" class="wa-fab" href="#" target="_blank" rel="noopener" aria-label="Tirar dúvidas pelo WhatsApp">
+  <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor" aria-hidden="true">
+    <path d="M16.01 3C9.38 3 4 8.35 4 14.94c0 2.22.6 4.29 1.66 6.08L4 29l8.24-1.6a12.9 12.9 0 0 0 3.77.56h.01c6.63 0 12.01-5.35 12.01-11.94C28.02 8.35 22.64 3 16.01 3zm0 21.78h-.01c-1.18 0-2.34-.31-3.36-.9l-.24-.14-4.89.95.98-4.8-.16-.25a9.7 9.7 0 0 1-1.5-5.2c0-5.4 4.4-9.79 9.83-9.79 2.63 0 5.1 1.02 6.96 2.87a9.71 9.71 0 0 1 2.88 6.92c0 5.4-4.4 9.79-9.79 9.79zm5.37-7.34c-.29-.15-1.73-.85-2-.95-.27-.1-.46-.15-.66.15-.2.29-.76.95-.93 1.14-.17.2-.34.22-.63.07-.29-.15-1.24-.46-2.35-1.46-.87-.78-1.46-1.74-1.63-2.03-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.2-.29.29-.49.1-.2.05-.37-.02-.51-.07-.15-.66-1.59-.9-2.18-.24-.57-.48-.5-.66-.51h-.56c-.2 0-.51.07-.78.37-.27.29-1.02 1-1.02 2.44s1.05 2.83 1.19 3.03c.15.2 2.06 3.14 5 4.4.7.3 1.24.48 1.67.61.7.22 1.34.19 1.84.12.56-.08 1.73-.71 1.97-1.39.24-.68.24-1.27.17-1.39-.07-.12-.26-.2-.55-.34z"/>
+  </svg>
+</a>
 
 <div class="toast" id="toast"></div>
 
@@ -830,6 +858,8 @@
   $("#spot-macbook img").src = IMAGES.macbook;
   $("#spot-iphone img").src = IMAGES.iphone;
   $("#spot-medicube img").src = IMAGES.vitaC;
+
+  $("#wa-help").href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent("Olá! Tenho uma dúvida sobre a Compras PY.")}`;
 
   refreshUserUI();
   renderDestaques();
