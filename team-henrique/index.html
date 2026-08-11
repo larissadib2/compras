@@ -168,6 +168,14 @@
     border: 1px solid var(--line); border-radius: 6px; color: var(--ink-soft); background: var(--sand-2);
   }
 
+  /* torneio */
+  .torneio-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.7rem; margin-bottom: 1.3rem; }
+  @media (max-width: 760px) { .torneio-grid { grid-template-columns: repeat(2, 1fr); } }
+  .torneio-grid img {
+    width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: var(--radius);
+    border: 1px solid var(--line); display: block;
+  }
+
   /* popup */
   .overlay {
     position: fixed; inset: 0; background: rgba(20, 32, 31, 0.55); backdrop-filter: blur(2px);
@@ -270,6 +278,7 @@
     <div class="logo"><span class="mark">TH</span>Team <em>Henrique</em></div>
     <ul class="nav-links">
       <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#torneio">Torneio 2025</a></li>
       <li><a href="#planos">Planos</a></li>
       <li><a href="#horarios">Horários</a></li>
       <li><a href="#cadastro">Cadastre-se</a></li>
@@ -332,6 +341,26 @@
       <p>Tudo começou de forma despretensiosa. Henrique já jogava tênis havia anos quando o beach tennis surgiu no caminho, sem grandes expectativas — só para experimentar. O que era curiosidade foi virando dedicação, jogo após jogo, até ele se tornar um dos melhores jogadores do vetor norte de Belo Horizonte.</p>
       <p>Foi na quadra de casa que tudo realmente começou: as primeiras aulas, os primeiros alunos, o início do que se tornaria o Team Henrique. Com o tempo e o crescimento da procura, o projeto ganhou um novo endereço, em uma arena em Lagoa Santa.</p>
       <p style="margin-bottom:0;">Depois de reformar a quadra de casa, Henrique decidiu voltar às origens — dessa vez, muito melhor. Voltou com orgulho, mais tranquilidade, mais hospitalidade e, acima de tudo, com a conexão próxima com cada aluno, que sempre foi a marca do seu trabalho.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TORNEIO 2025 ============ -->
+<section id="torneio">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>O primeiro torneio Team Henrique</h2>
+      <p>2025 marcou a primeira competição organizada pelo próprio Team Henrique — e o resultado foi de virar tradição.</p>
+    </div>
+    <div class="card">
+      <div class="torneio-grid">
+        <img src="assets/torneio-4.jpg" alt="Alunas do Team Henrique com os troféus de campeã e vice-campeã">
+        <img src="assets/torneio-3.jpg" alt="Duplas se cumprimentando na quadra durante o torneio">
+        <img src="assets/torneio-2.jpg" alt="Grupo do Team Henrique reunido à noite com os troféus do torneio">
+        <img src="assets/torneio-1.jpg" alt="Henrique com a família vestindo a camisa do Team Henrique Beach Tennis">
+      </div>
+      <p>Em 2025, o Team Henrique organizou seu primeiro torneio, reunindo alunos de todos os níveis em uma tarde de muita disputa, técnica e comemoração. Craques de quadra e famílias vestiram a camisa do time e disputaram partidas até a entrega dos troféus de campeãs e vice-campeãs — um dos momentos mais marcantes desde que as aulas começaram na quadra de casa.</p>
+      <p style="margin-bottom:0;">Mais do que o resultado, o torneio mostrou o espírito de equipe construído ao longo do tempo: alunos que treinam juntos, torcem juntos e comemoram juntos. Foi um sucesso tão grande que já virou tradição — o primeiro de muitos.</p>
     </div>
   </div>
 </section>
