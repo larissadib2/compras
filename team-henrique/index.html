@@ -7,54 +7,54 @@
 <meta name="description" content="Team Henrique: aulas de beach tennis do aprendiz ao avançado. Marque, cancele e acompanhe sua evolução.">
 <style>
   :root {
-    --sand: #fbf3e3;
-    --sand-2: #f3e6cc;
-    --ink: #1c2b2e;
-    --ink-soft: #5a6b6b;
-    --line: #e6d9bc;
-    --teal: #0f8f8a;
-    --teal-deep: #0a6e6a;
-    --teal-glow: #d9f2ee;
-    --coral: #ff6b4a;
-    --coral-deep: #e04f2f;
+    --sand: #f5f3ee;
+    --sand-2: #ebe7dc;
+    --ink: #1b1c1a;
+    --ink-soft: #66655d;
+    --line: #dcd7c9;
+    --teal: #35473f;
+    --teal-deep: #24322c;
+    --teal-glow: #e7eae5;
+    --coral: #7a5236;
+    --coral-deep: #5f3f29;
     --white: #ffffff;
-    --ok: #1f8a5b;
-    --warn: #c9862b;
-    --danger: #d94848;
-    --radius: 16px;
-    --shadow: 0 8px 24px rgba(28, 43, 46, 0.08);
+    --ok: #3d6b4f;
+    --warn: #93692c;
+    --danger: #a13f3f;
+    --radius: 10px;
+    --shadow: 0 6px 18px rgba(27, 28, 26, 0.06);
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --sand: #14201f;
-      --sand-2: #1b2a28;
-      --ink: #eef4f2;
-      --ink-soft: #a9bcb9;
-      --line: #2c3e3b;
-      --teal: #2bbdb2;
-      --teal-deep: #58d6cb;
-      --teal-glow: #163330;
-      --coral: #ff8064;
-      --coral-deep: #ff9a80;
-      --white: #1b2a28;
-      --ok: #4fcf94;
-      --warn: #e0a94f;
-      --danger: #ff8686;
-      --shadow: 0 8px 24px rgba(0,0,0,0.35);
+      --sand: #17181a;
+      --sand-2: #1f2123;
+      --ink: #ece9e2;
+      --ink-soft: #a5a299;
+      --line: #33342f;
+      --teal: #7e9689;
+      --teal-deep: #a3b8ac;
+      --teal-glow: #232823;
+      --coral: #b98a63;
+      --coral-deep: #cf9f79;
+      --white: #1f2123;
+      --ok: #6fa683;
+      --warn: #c79a56;
+      --danger: #c17777;
+      --shadow: 0 6px 18px rgba(0,0,0,0.3);
     }
   }
   :root[data-theme="dark"] {
-    --sand: #14201f; --sand-2: #1b2a28; --ink: #eef4f2; --ink-soft: #a9bcb9;
-    --line: #2c3e3b; --teal: #2bbdb2; --teal-deep: #58d6cb; --teal-glow: #163330;
-    --coral: #ff8064; --coral-deep: #ff9a80; --white: #1b2a28; --ok: #4fcf94;
-    --warn: #e0a94f; --danger: #ff8686; --shadow: 0 8px 24px rgba(0,0,0,0.35);
+    --sand: #17181a; --sand-2: #1f2123; --ink: #ece9e2; --ink-soft: #a5a299;
+    --line: #33342f; --teal: #7e9689; --teal-deep: #a3b8ac; --teal-glow: #232823;
+    --coral: #b98a63; --coral-deep: #cf9f79; --white: #1f2123; --ok: #6fa683;
+    --warn: #c79a56; --danger: #c17777; --shadow: 0 6px 18px rgba(0,0,0,0.3);
   }
   :root[data-theme="light"] {
-    --sand: #fbf3e3; --sand-2: #f3e6cc; --ink: #1c2b2e; --ink-soft: #5a6b6b;
-    --line: #e6d9bc; --teal: #0f8f8a; --teal-deep: #0a6e6a; --teal-glow: #d9f2ee;
-    --coral: #ff6b4a; --coral-deep: #e04f2f; --white: #ffffff; --ok: #1f8a5b;
-    --warn: #c9862b; --danger: #d94848; --shadow: 0 8px 24px rgba(28, 43, 46, 0.08);
+    --sand: #f5f3ee; --sand-2: #ebe7dc; --ink: #1b1c1a; --ink-soft: #66655d;
+    --line: #dcd7c9; --teal: #35473f; --teal-deep: #24322c; --teal-glow: #e7eae5;
+    --coral: #7a5236; --coral-deep: #5f3f29; --white: #ffffff; --ok: #3d6b4f;
+    --warn: #93692c; --danger: #a13f3f; --shadow: 0 6px 18px rgba(27, 28, 26, 0.06);
   }
 
   * { box-sizing: border-box; }
@@ -66,7 +66,7 @@
     font-family: -apple-system, "Segoe UI", Roboto, ui-sans-serif, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3 { font-weight: 800; letter-spacing: -0.01em; margin: 0 0 0.5rem; }
+  h1, h2, h3 { font-weight: 700; letter-spacing: -0.01em; margin: 0 0 0.5rem; }
   p { line-height: 1.55; color: var(--ink-soft); margin: 0 0 0.75rem; }
   a { color: inherit; }
   button { font: inherit; cursor: pointer; }
@@ -82,9 +82,12 @@
     border-bottom: 1px solid var(--line);
   }
   .topnav-inner { display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 0; gap: 1rem; }
-  .logo { font-size: 1.2rem; font-weight: 800; display: flex; align-items: center; gap: 0.4rem; }
-  .logo .ball { font-size: 1.3rem; }
-  .logo em { color: var(--teal); font-style: normal; }
+  .logo { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; display: flex; align-items: center; gap: 0.55rem; }
+  .logo .mark {
+    width: 28px; height: 28px; border-radius: 6px; background: var(--ink); color: var(--sand);
+    display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700; letter-spacing: 0;
+  }
+  .logo em { color: var(--teal-deep); font-style: normal; }
   .nav-links { display: flex; gap: 1.3rem; font-size: 0.88rem; color: var(--ink-soft); list-style: none; padding: 0; margin: 0; }
   .nav-links a { text-decoration: none; }
   .nav-links a:hover { color: var(--teal); }
@@ -92,13 +95,13 @@
 
   .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
-    border: 1px solid var(--teal); border-radius: 999px;
-    padding: 0.6rem 1.3rem; background: var(--teal); color: #fff;
-    font-weight: 700; font-size: 0.9rem; transition: transform 0.12s ease, opacity 0.12s ease;
+    border: 1px solid var(--ink); border-radius: 8px;
+    padding: 0.6rem 1.3rem; background: var(--ink); color: var(--sand);
+    font-weight: 600; font-size: 0.9rem; transition: transform 0.12s ease, opacity 0.12s ease;
   }
-  .btn:hover { opacity: 0.9; }
-  .btn:active { transform: scale(0.97); }
-  .btn-coral { background: var(--coral); border-color: var(--coral); }
+  .btn:hover { opacity: 0.88; }
+  .btn:active { transform: scale(0.98); }
+  .btn-coral { background: var(--teal-deep); border-color: var(--teal-deep); color: #fff; }
   .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
   .btn-sm { padding: 0.4rem 0.9rem; font-size: 0.82rem; }
   .btn-block { width: 100%; }
@@ -107,12 +110,12 @@
   /* hero */
   .hero { padding: 3.2rem 0 2.4rem; text-align: center; }
   .hero .kicker {
-    display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em;
-    text-transform: uppercase; color: var(--teal-deep); background: var(--teal-glow);
-    padding: 0.35rem 0.9rem; border-radius: 999px; margin-bottom: 1rem;
+    display: inline-block; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink-soft); background: var(--sand-2);
+    border: 1px solid var(--line); padding: 0.35rem 0.9rem; border-radius: 6px; margin-bottom: 1rem;
   }
-  .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
-  .hero h1 em { color: var(--coral); font-style: normal; }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3rem); }
+  .hero h1 em { color: var(--teal-deep); font-style: normal; }
   .hero .sub { max-width: 560px; margin: 0.6rem auto 1.6rem; font-size: 1.05rem; }
   .hero-actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
 
@@ -129,18 +132,21 @@
     background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
     padding: 1.5rem; box-shadow: var(--shadow);
   }
-  .feature-card .icon { font-size: 1.8rem; margin-bottom: 0.6rem; display: block; }
+  .feature-card .icon {
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; color: var(--ink-soft);
+    margin-bottom: 0.8rem; display: block; font-variant-numeric: tabular-nums;
+  }
   .feature-card h3 { font-size: 1.1rem; }
 
   .plan-card { text-align: center; position: relative; }
-  .plan-card.featured { border-color: var(--teal); }
+  .plan-card.featured { border-color: var(--teal-deep); }
   .plan-badge {
     position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-    background: var(--coral); color: #fff; font-size: 0.72rem; font-weight: 700;
-    padding: 0.25rem 0.8rem; border-radius: 999px;
+    background: var(--teal-deep); color: #fff; font-size: 0.7rem; font-weight: 600;
+    padding: 0.25rem 0.8rem; border-radius: 6px;
   }
   .plan-card .freq { font-size: 0.85rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; }
-  .plan-card .price { font-size: 2.2rem; font-weight: 800; margin: 0.4rem 0; }
+  .plan-card .price { font-size: 2.1rem; font-weight: 700; margin: 0.4rem 0; }
   .plan-card .price small { font-size: 0.95rem; font-weight: 600; color: var(--ink-soft); }
 
   .schedule-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
@@ -153,15 +159,20 @@
     display: flex; align-items: center; justify-content: center; z-index: 200; padding: 1rem;
   }
   .popup {
-    background: var(--white); border-radius: 20px; max-width: 420px; width: 100%;
-    padding: 2rem 1.6rem; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.25); position: relative;
+    background: var(--white); border-radius: 12px; max-width: 420px; width: 100%;
+    padding: 2.2rem 1.8rem; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.22); position: relative;
+    border: 1px solid var(--line);
   }
   .popup .close-x {
     position: absolute; top: 0.7rem; right: 0.9rem; background: none; border: none;
     font-size: 1.3rem; color: var(--ink-soft); padding: 0.2rem;
   }
-  .popup .ball { font-size: 2.6rem; display: block; margin-bottom: 0.6rem; }
-  .popup h2 { font-size: 1.35rem; }
+  .popup .kicker {
+    display: inline-block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--teal-deep); background: var(--teal-glow);
+    padding: 0.3rem 0.75rem; border-radius: 6px; margin-bottom: 0.9rem;
+  }
+  .popup h2 { font-size: 1.3rem; }
   .popup p { font-size: 0.95rem; }
 
   /* forms */
@@ -179,10 +190,10 @@
 
   .slots-picker { display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .slot-chip {
-    border: 1px solid var(--line); border-radius: 999px; padding: 0.4rem 0.85rem;
+    border: 1px solid var(--line); border-radius: 6px; padding: 0.4rem 0.85rem;
     font-size: 0.82rem; background: var(--sand-2); cursor: pointer; user-select: none;
   }
-  .slot-chip.selected { background: var(--teal); border-color: var(--teal); color: #fff; }
+  .slot-chip.selected { background: var(--teal-deep); border-color: var(--teal-deep); color: #fff; }
   .slot-chip.disabled { opacity: 0.35; cursor: not-allowed; }
 
   /* student portal */
@@ -190,7 +201,7 @@
     display: flex; align-items: center; justify-content: space-between; gap: 0.8rem;
     padding: 0.8rem 1rem; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 0.6rem; background: var(--sand-2);
   }
-  .aula-item .status { font-size: 0.75rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 999px; }
+  .aula-item .status { font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 6px; }
   .status.confirmada { background: color-mix(in srgb, var(--ok) 18%, transparent); color: var(--ok); }
   .status.cancelada { background: color-mix(in srgb, var(--danger) 18%, transparent); color: var(--danger); text-decoration: line-through; }
 
@@ -202,8 +213,8 @@
   .prof-shell { max-width: 960px; }
   .prof-login-card { max-width: 380px; margin: 3rem auto; }
   .tabbar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
-  .tabbar button { background: var(--white); border: 1px solid var(--line); border-radius: 999px; padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 600; color: var(--ink-soft); }
-  .tabbar button.active { background: var(--teal); border-color: var(--teal); color: #fff; }
+  .tabbar button { background: var(--white); border: 1px solid var(--line); border-radius: 6px; padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 600; color: var(--ink-soft); }
+  .tabbar button.active { background: var(--ink); border-color: var(--ink); color: var(--sand); }
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
 
@@ -216,7 +227,7 @@
   @media (max-width: 640px) { .stat-row { grid-template-columns: 1fr; } }
   .stat-card { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem 1.3rem; }
   .stat-card .label { font-size: 0.78rem; color: var(--ink-soft); text-transform: uppercase; font-weight: 700; }
-  .stat-card .value { font-size: 1.6rem; font-weight: 800; margin-top: 0.2rem; }
+  .stat-card .value { font-size: 1.6rem; font-weight: 700; margin-top: 0.2rem; }
 
   .agenda-grid { width: 100%; border-collapse: collapse; }
   .agenda-grid th, .agenda-grid td { border: 1px solid var(--line); padding: 0.5rem; font-size: 0.78rem; vertical-align: top; min-width: 120px; }
@@ -239,7 +250,7 @@
 <!-- ============ TOPNAV ============ -->
 <div class="topnav">
   <div class="wrap topnav-inner">
-    <div class="logo"><span class="ball">🎾</span>Team <em>Henrique</em></div>
+    <div class="logo"><span class="mark">TH</span>Team <em>Henrique</em></div>
     <ul class="nav-links">
       <li><a href="#planos">Planos</a></li>
       <li><a href="#horarios">Horários</a></li>
@@ -256,10 +267,10 @@
 <div class="overlay" id="popupGratis">
   <div class="popup">
     <button class="close-x" id="popupClose" aria-label="Fechar">✕</button>
-    <span class="ball">🎾🏖️</span>
-    <h2>Sua primeira aula é grátis!</h2>
-    <p>Marque sua aula experimental gratuita com o Team Henrique e conheça o beach tennis sem compromisso.</p>
-    <button class="btn btn-coral btn-block" id="popupCta">Quero minha aula grátis</button>
+    <span class="kicker">Team Henrique</span>
+    <h2>Sua primeira aula é grátis</h2>
+    <p>Marque sua aula experimental gratuita com o Team Henrique e conheça a metodologia sem compromisso.</p>
+    <button class="btn btn-coral btn-block" id="popupCta">Marcar aula experimental</button>
     <p class="field-hint" style="margin-top:0.8rem;">Você será direcionado ao WhatsApp com uma mensagem pronta. Depois, complete seu cadastro aqui no site.</p>
   </div>
 </div>
@@ -270,7 +281,7 @@
   <div class="wrap">
     <span class="kicker">Team Henrique · Beach Tennis</span>
     <h1>Beach tennis <em>do aprendiz ao avançado</em></h1>
-    <p class="sub">Aulas para todos os níveis, agendamento simples e acompanhamento de perto. Marque sua aula experimental gratuita e venha jogar.</p>
+    <p class="sub">Aulas para todos os níveis, com agendamento simples e acompanhamento próximo da sua evolução em quadra.</p>
     <div class="hero-actions">
       <button class="btn btn-coral" id="heroCta">Marcar aula experimental grátis</button>
       <a href="#cadastro" class="btn btn-ghost">Fazer cadastro</a>
@@ -286,19 +297,19 @@
     </div>
     <div class="grid-3">
       <div class="card feature-card">
-        <span class="icon">⚡</span>
+        <span class="icon">01</span>
         <h3>Agende em segundos</h3>
-        <p>Escolha o dia e o horário que preferir direto pelo site e garanta sua vaga na aula rapidinho, sem burocracia.</p>
+        <p>Escolha o dia e o horário que preferir direto pelo site e garanta sua vaga na aula, sem burocracia.</p>
       </div>
       <div class="card feature-card">
-        <span class="icon">🔄</span>
+        <span class="icon">02</span>
         <h3>Cancele sem complicação</h3>
         <p>Precisou faltar? Cancele com até 5 horas de antecedência e garanta a reposição da sua aula.</p>
       </div>
       <div class="card feature-card">
-        <span class="icon">🏆</span>
+        <span class="icon">03</span>
         <h3>Do aprendiz ao avançado</h3>
-        <p>Treinos pensados para o seu nível: turmas para quem está começando até quem já compete. Você evolui no seu ritmo.</p>
+        <p>Treinos pensados para o seu nível: turmas para quem está começando até quem já compete, no seu ritmo.</p>
       </div>
     </div>
   </div>
@@ -522,7 +533,7 @@
         <p>Escreva a mensagem e clique em enviar. O WhatsApp abrirá uma aba para cada aluno com o texto já pronto — o WhatsApp exige que você confirme o envio manualmente em cada conversa (não é possível disparar automaticamente sem WhatsApp Business API).</p>
         <div class="field">
           <label for="mensagemTexto">Mensagem</label>
-          <textarea id="mensagemTexto" placeholder="Ex: Aula de quinta-feira remarcada para 18h, confirme presença!"></textarea>
+          <textarea id="mensagemTexto" placeholder="Ex: Aula de quinta-feira remarcada para 18h, confirme presença."></textarea>
         </div>
         <button class="btn btn-coral" id="btnEnviarTodos">Enviar para todos (<span id="qtdAlunosMsg">0</span> alunos)</button>
         <div id="listaEnvios" style="margin-top:1rem;"></div>
@@ -634,7 +645,7 @@
   // POPUP "AULA GRÁTIS"
   // ---------------------------------------------------------------
   var popup = document.getElementById("popupGratis");
-  var msgExperimental = "Olá, Team Henrique! Quero agendar minha aula experimental gratuita de beach tennis. 🎾🏖️";
+  var msgExperimental = "Olá, Team Henrique. Quero agendar minha aula experimental gratuita de beach tennis.";
 
   function irParaWhatsappExperimental() {
     window.open(waLink(PHONE_PROFESSOR, msgExperimental), "_blank");
@@ -771,7 +782,7 @@
     localStorage.setItem("th_meu_aluno_id", aluno.id);
 
     msgEl.className = "form-msg ok";
-    msgEl.textContent = "Cadastro realizado! Suas próximas aulas já estão na seção \"Minhas aulas\".";
+    msgEl.textContent = "Cadastro realizado. Suas próximas aulas já estão na seção \"Minhas aulas\".";
     document.getElementById("formCadastro").reset();
     selectedSlots = [];
     planoCountLabel.textContent = "(1 horário)";
@@ -846,7 +857,7 @@
     var box = document.getElementById("minhasAulasBox");
     box.classList.remove("hidden");
     var aulas = gerarProximasAulas(aluno, 4);
-    var html = '<div class="card"><h3>Olá, ' + aluno.nome.split(" ")[0] + '! Suas próximas aulas (' + LABEL_PLANO[aluno.plano] + ')</h3>';
+    var html = '<div class="card"><h3>Olá, ' + aluno.nome.split(" ")[0] + '. Suas próximas aulas (' + LABEL_PLANO[aluno.plano] + ')</h3>';
     if (aulas.length === 0) {
       html += "<p>Nenhum horário cadastrado.</p>";
     } else {
@@ -868,7 +879,7 @@
         var cancelamentos = getCancelamentos();
         cancelamentos.push({ alunoId: aluno.id, data: btn.dataset.data, horario: btn.dataset.horario, canceladoEm: new Date().toISOString() });
         save(LS.cancelamentos, cancelamentos);
-        toast("Aula cancelada. Sua reposição está garantida!");
+        toast("Aula cancelada. Sua reposição está garantida.");
         mostrarMinhasAulas(aluno);
       });
     });
@@ -1097,7 +1108,7 @@
       tr.innerHTML = "<td>" + (aluno ? aluno.nome : "Aluno removido") + "</td>" +
         "<td>" + fmtMoeda(p.valor) + "</td>" +
         "<td>" + (p.forma === "pix" ? "Pix" : "Automático") + "</td>" +
-        "<td>" + (p.status === "pago" ? "✅ Pago" : "⏳ Aguardando Pix") + "</td>" +
+        "<td>" + (p.status === "pago" ? "Pago" : "Aguardando Pix") + "</td>" +
         "<td>" + new Date(p.data).toLocaleDateString("pt-BR") + "</td>" +
         "<td>" + (p.status !== "pago" ? '<button class="btn btn-sm" data-id="' + p.id + '">Marcar recebido</button>' : "") + "</td>";
       tbody.appendChild(tr);
@@ -1157,7 +1168,7 @@
       '<div class="pix-box">' + codigo + '</div>' +
       '<button class="btn btn-sm btn-ghost" id="btnCopiarPix" style="margin-top:0.5rem;">Copiar código</button>';
     document.getElementById("btnCopiarPix").addEventListener("click", function () {
-      navigator.clipboard.writeText(codigo).then(function () { toast("Código Pix copiado!"); });
+      navigator.clipboard.writeText(codigo).then(function () { toast("Código Pix copiado."); });
     });
     renderFinanceiro();
   });
