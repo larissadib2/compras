@@ -159,8 +159,7 @@
   .about-photo {
     width: 100%; max-width: 180px; aspect-ratio: 1; border-radius: var(--radius);
     background: var(--sand-2); border: 1px solid var(--line);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 2.2rem; font-weight: 700; color: var(--ink-soft); letter-spacing: -0.02em;
+    display: block; object-fit: cover; object-position: center 20%;
   }
   .about-highlights { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
   @media (max-width: 640px) { .about-highlights { justify-content: center; } }
@@ -316,7 +315,7 @@
     </div>
     <div class="card" style="margin-bottom:1.2rem;">
       <div class="about-grid">
-        <div class="about-photo">TH</div>
+        <img class="about-photo" src="assets/henrique.jpg" alt="Henrique, professor do Team Henrique">
         <div>
           <h3>Henrique</h3>
           <p>Henrique é o professor responsável pelas aulas do Team Henrique. O trabalho é focado em ensinar beach tennis de forma acessível para quem está começando e em evoluir jogadores até o nível avançado, com turmas pensadas para o ritmo de cada aluno e acompanhamento próximo em quadra.</p>
