@@ -153,6 +153,22 @@
   .schedule-table th, .schedule-table td { padding: 0.75rem; text-align: center; border: 1px solid var(--line); font-size: 0.9rem; }
   .schedule-table th { background: var(--teal-glow); color: var(--teal-deep); }
 
+  /* sobre */
+  .about-grid { display: grid; grid-template-columns: 180px 1fr; gap: 2rem; align-items: start; }
+  @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; justify-items: center; text-align: center; } }
+  .about-photo {
+    width: 100%; max-width: 180px; aspect-ratio: 1; border-radius: var(--radius);
+    background: var(--sand-2); border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.2rem; font-weight: 700; color: var(--ink-soft); letter-spacing: -0.02em;
+  }
+  .about-highlights { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
+  @media (max-width: 640px) { .about-highlights { justify-content: center; } }
+  .about-highlight {
+    font-size: 0.8rem; font-weight: 600; padding: 0.35rem 0.75rem;
+    border: 1px solid var(--line); border-radius: 6px; color: var(--ink-soft); background: var(--sand-2);
+  }
+
   /* popup */
   .overlay {
     position: fixed; inset: 0; background: rgba(20, 32, 31, 0.55); backdrop-filter: blur(2px);
@@ -204,6 +220,8 @@
   .aula-item .status { font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 6px; }
   .status.confirmada { background: color-mix(in srgb, var(--ok) 18%, transparent); color: var(--ok); }
   .status.cancelada { background: color-mix(in srgb, var(--danger) 18%, transparent); color: var(--danger); text-decoration: line-through; }
+  .status.pendente { background: color-mix(in srgb, var(--warn) 20%, transparent); color: var(--warn); }
+  .status.agendada { background: var(--sand-2); color: var(--ink-soft); }
 
   footer { border-top: 1px solid var(--line); padding: 2rem 0; margin-top: 2rem; text-align: center; }
   footer p { font-size: 0.85rem; }
@@ -252,6 +270,7 @@
   <div class="wrap topnav-inner">
     <div class="logo"><span class="mark">TH</span>Team <em>Henrique</em></div>
     <ul class="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
       <li><a href="#planos">Planos</a></li>
       <li><a href="#horarios">Horários</a></li>
       <li><a href="#cadastro">Cadastre-se</a></li>
@@ -285,6 +304,29 @@
     <div class="hero-actions">
       <button class="btn btn-coral" id="heroCta">Marcar aula experimental grátis</button>
       <a href="#cadastro" class="btn btn-ghost">Fazer cadastro</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOBRE ============ -->
+<section id="sobre">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Sobre o Team Henrique</h2>
+    </div>
+    <div class="card">
+      <div class="about-grid">
+        <div class="about-photo">TH</div>
+        <div>
+          <h3>Henrique</h3>
+          <p>Henrique é o professor responsável pelas aulas do Team Henrique. O trabalho é focado em ensinar beach tennis de forma acessível para quem está começando e em evoluir jogadores até o nível avançado, com turmas pensadas para o ritmo de cada aluno e acompanhamento próximo em quadra.</p>
+          <div class="about-highlights">
+            <span class="about-highlight">Turmas por nível</span>
+            <span class="about-highlight">Acompanhamento individual</span>
+            <span class="about-highlight">Quadra própria</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -495,6 +537,9 @@
       <div style="overflow-x:auto;">
         <table class="agenda-grid" id="agendaGrid"></table>
       </div>
+      <h3 style="margin-top:1.8rem;">Check-ins das próximas 48 horas</h3>
+      <p class="field-hint" style="margin-top:-0.4rem;">O check-in libera para o aluno 24h antes da aula. Quem não confirmar aparece como "Agendada" ou "Aguardando check-in".</p>
+      <div id="listaCheckins"></div>
       <h3 style="margin-top:1.8rem;">Cancelamentos recentes</h3>
       <div id="listaCancelamentos"></div>
     </div>
@@ -598,10 +643,12 @@
   var LS = {
     alunos: "th_alunos",
     cancelamentos: "th_cancelamentos",
+    checkins: "th_checkins",
     pagamentos: "th_pagamentos",
     config: "th_config",
     profAuth: "th_prof_auth" // sessionStorage
   };
+  var CHECKIN_JANELA_HORAS = 24;
 
   function load(key, fallback) {
     try {
@@ -829,6 +876,14 @@
     });
   }
 
+  function getCheckins() { return load(LS.checkins, []); }
+
+  function fizCheckin(alunoId, dataISO, horario) {
+    return getCheckins().some(function (c) {
+      return c.alunoId === alunoId && c.data === dataISO && c.horario === horario;
+    });
+  }
+
   function gerarProximasAulas(aluno, semanas) {
     var lista = [];
     (aluno.slots || []).forEach(function (slot) {
@@ -840,7 +895,8 @@
           dataLabel: d.toLocaleDateString("pt-BR", { weekday: "long", day: "2-digit", month: "2-digit" }),
           horario: slot.horario,
           datetime: aulaDateTime(d, slot.horario),
-          cancelada: estaCancelada(aluno.id, dataISO, slot.horario)
+          cancelada: estaCancelada(aluno.id, dataISO, slot.horario),
+          checkin: fizCheckin(aluno.id, dataISO, slot.horario)
         });
       });
     });
@@ -853,6 +909,12 @@
     return new Date() < limite;
   }
 
+  function checkinLiberado(aula) {
+    var abre = new Date(aula.datetime.getTime() - CHECKIN_JANELA_HORAS * 60 * 60 * 1000);
+    var agora = new Date();
+    return agora >= abre && agora < aula.datetime;
+  }
+
   function mostrarMinhasAulas(aluno) {
     var box = document.getElementById("minhasAulasBox");
     box.classList.remove("hidden");
@@ -863,13 +925,19 @@
     } else {
       aulas.forEach(function (a) {
         var podeCanc = !a.cancelada && podeCancelar(a);
+        var liberado = !a.cancelada && checkinLiberado(a);
+        var statusClasse = a.cancelada ? "cancelada" : (a.checkin ? "confirmada" : (liberado ? "pendente" : "agendada"));
+        var statusTexto = a.cancelada ? "Cancelada" : (a.checkin ? "Check-in feito" : (liberado ? "Aguardando check-in" : "Agendada"));
         html += '<div class="aula-item">' +
           '<span>' + a.dataLabel + " às " + a.horario + '</span>' +
-          '<span class="status ' + (a.cancelada ? "cancelada" : "confirmada") + '">' + (a.cancelada ? "Cancelada" : "Confirmada") + '</span>' +
+          '<div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">' +
+          '<span class="status ' + statusClasse + '">' + statusTexto + '</span>' +
+          (!a.cancelada && !a.checkin && liberado ? '<button class="btn btn-sm btn-coral btn-checkin-aula" data-data="' + a.data + '" data-horario="' + a.horario + '">Fazer check-in</button>' : "") +
           (a.cancelada ? "" : '<button class="btn btn-sm btn-ghost btn-cancelar-aula" data-data="' + a.data + '" data-horario="' + a.horario + '" ' + (podeCanc ? "" : "disabled") + '>Cancelar</button>') +
+          "</div>" +
           "</div>";
       });
-      html += '<p class="field-hint">Cancelamentos só são permitidos até 5 horas antes do horário da aula, garantindo sua reposição.</p>';
+      html += '<p class="field-hint">O check-in libera 24 horas antes da aula — confirme presença para garantir sua vaga. Cancelamentos são permitidos até 5 horas antes, garantindo sua reposição.</p>';
     }
     html += "</div>";
     box.innerHTML = html;
@@ -880,6 +948,16 @@
         cancelamentos.push({ alunoId: aluno.id, data: btn.dataset.data, horario: btn.dataset.horario, canceladoEm: new Date().toISOString() });
         save(LS.cancelamentos, cancelamentos);
         toast("Aula cancelada. Sua reposição está garantida.");
+        mostrarMinhasAulas(aluno);
+      });
+    });
+
+    box.querySelectorAll(".btn-checkin-aula").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var checkins = getCheckins();
+        checkins.push({ alunoId: aluno.id, data: btn.dataset.data, horario: btn.dataset.horario, checkinEm: new Date().toISOString() });
+        save(LS.checkins, checkins);
+        toast("Check-in feito. Sua vaga está garantida.");
         mostrarMinhasAulas(aluno);
       });
     });
@@ -981,6 +1059,7 @@
   function renderPainelProfessor() {
     renderTabelaAlunos();
     renderAgenda();
+    renderCheckins();
     renderFinanceiro();
     renderMensagens();
     renderConfig();
@@ -1052,6 +1131,33 @@
         return '<div class="aula-item"><span>' + nome + " — " + dataFmt + " às " + c.horario + "</span><span class=\"status cancelada\">Cancelada</span></div>";
       }).join("");
     }
+  }
+
+  function renderCheckins() {
+    var alunos = load(LS.alunos, []);
+    var agora = new Date();
+    var horizonte = new Date(agora.getTime() + 48 * 60 * 60 * 1000);
+    var proximas = [];
+    alunos.forEach(function (aluno) {
+      gerarProximasAulas(aluno, 2).forEach(function (a) {
+        if (!a.cancelada && a.datetime >= agora && a.datetime <= horizonte) {
+          proximas.push({ aluno: aluno, aula: a });
+        }
+      });
+    });
+    proximas.sort(function (x, y) { return x.aula.datetime - y.aula.datetime; });
+
+    var el = document.getElementById("listaCheckins");
+    if (proximas.length === 0) {
+      el.innerHTML = "<p>Nenhuma aula nas próximas 48 horas.</p>";
+      return;
+    }
+    el.innerHTML = proximas.map(function (t) {
+      var liberado = checkinLiberado(t.aula);
+      var statusClasse = t.aula.checkin ? "confirmada" : (liberado ? "pendente" : "agendada");
+      var statusTexto = t.aula.checkin ? "Check-in feito" : (liberado ? "Aguardando check-in" : "Agendada");
+      return '<div class="aula-item"><span>' + t.aluno.nome + " — " + t.aula.dataLabel + " às " + t.aula.horario + '</span><span class="status ' + statusClasse + '">' + statusTexto + "</span></div>";
+    }).join("");
   }
 
   // ---- FINANCEIRO ----
