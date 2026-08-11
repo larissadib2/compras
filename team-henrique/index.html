@@ -12,11 +12,11 @@
     --ink: #1b1c1a;
     --ink-soft: #66655d;
     --line: #dcd7c9;
-    --teal: #35473f;
-    --teal-deep: #24322c;
-    --teal-glow: #e7eae5;
-    --coral: #7a5236;
-    --coral-deep: #5f3f29;
+    --teal: #0e9384;
+    --teal-deep: #0b7566;
+    --teal-glow: #d7f5ef;
+    --coral: #e8412a;
+    --coral-deep: #c73a22;
     --white: #ffffff;
     --ok: #3d6b4f;
     --warn: #93692c;
@@ -32,11 +32,11 @@
       --ink: #ece9e2;
       --ink-soft: #a5a299;
       --line: #33342f;
-      --teal: #7e9689;
-      --teal-deep: #a3b8ac;
-      --teal-glow: #232823;
-      --coral: #b98a63;
-      --coral-deep: #cf9f79;
+      --teal: #14a894;
+      --teal-deep: #5eead4;
+      --teal-glow: #10302b;
+      --coral: #f2452a;
+      --coral-deep: #ffab91;
       --white: #1f2123;
       --ok: #6fa683;
       --warn: #c79a56;
@@ -46,14 +46,14 @@
   }
   :root[data-theme="dark"] {
     --sand: #17181a; --sand-2: #1f2123; --ink: #ece9e2; --ink-soft: #a5a299;
-    --line: #33342f; --teal: #7e9689; --teal-deep: #a3b8ac; --teal-glow: #232823;
-    --coral: #b98a63; --coral-deep: #cf9f79; --white: #1f2123; --ok: #6fa683;
+    --line: #33342f; --teal: #14a894; --teal-deep: #5eead4; --teal-glow: #10302b;
+    --coral: #f2452a; --coral-deep: #ffab91; --white: #1f2123; --ok: #6fa683;
     --warn: #c79a56; --danger: #c17777; --shadow: 0 6px 18px rgba(0,0,0,0.3);
   }
   :root[data-theme="light"] {
     --sand: #f5f3ee; --sand-2: #ebe7dc; --ink: #1b1c1a; --ink-soft: #66655d;
-    --line: #dcd7c9; --teal: #35473f; --teal-deep: #24322c; --teal-glow: #e7eae5;
-    --coral: #7a5236; --coral-deep: #5f3f29; --white: #ffffff; --ok: #3d6b4f;
+    --line: #dcd7c9; --teal: #0e9384; --teal-deep: #0b7566; --teal-glow: #d7f5ef;
+    --coral: #e8412a; --coral-deep: #c73a22; --white: #ffffff; --ok: #3d6b4f;
     --warn: #93692c; --danger: #a13f3f; --shadow: 0 6px 18px rgba(27, 28, 26, 0.06);
   }
 
@@ -84,13 +84,13 @@
   .topnav-inner { display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 0; gap: 1rem; }
   .logo { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; display: flex; align-items: center; gap: 0.55rem; }
   .logo .mark {
-    width: 28px; height: 28px; border-radius: 6px; background: var(--ink); color: var(--sand);
+    width: 28px; height: 28px; border-radius: 6px; background: var(--teal); color: #fff;
     display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700; letter-spacing: 0;
   }
   .logo em { color: var(--teal-deep); font-style: normal; }
   .nav-links { display: flex; gap: 1.3rem; font-size: 0.88rem; color: var(--ink-soft); list-style: none; padding: 0; margin: 0; }
   .nav-links a { text-decoration: none; }
-  .nav-links a:hover { color: var(--teal); }
+  .nav-links a:hover { color: var(--teal-deep); }
   @media (max-width: 720px) { .nav-links { display: none; } }
 
   .btn {
@@ -101,7 +101,7 @@
   }
   .btn:hover { opacity: 0.88; }
   .btn:active { transform: scale(0.98); }
-  .btn-coral { background: var(--teal-deep); border-color: var(--teal-deep); color: #fff; }
+  .btn-coral { background: var(--coral); border-color: var(--coral); color: #fff; }
   .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
   .btn-sm { padding: 0.4rem 0.9rem; font-size: 0.82rem; }
   .btn-block { width: 100%; }
@@ -111,8 +111,8 @@
   .hero { padding: 3.2rem 0 2.4rem; text-align: center; }
   .hero .kicker {
     display: inline-block; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--ink-soft); background: var(--sand-2);
-    border: 1px solid var(--line); padding: 0.35rem 0.9rem; border-radius: 6px; margin-bottom: 1rem;
+    text-transform: uppercase; color: var(--teal-deep); background: var(--teal-glow);
+    padding: 0.35rem 0.9rem; border-radius: 6px; margin-bottom: 1rem;
   }
   .hero h1 { font-size: clamp(2rem, 5vw, 3rem); }
   .hero h1 em { color: var(--teal-deep); font-style: normal; }
@@ -133,16 +133,16 @@
     padding: 1.5rem; box-shadow: var(--shadow);
   }
   .feature-card .icon {
-    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; color: var(--ink-soft);
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; color: var(--teal-deep);
     margin-bottom: 0.8rem; display: block; font-variant-numeric: tabular-nums;
   }
   .feature-card h3 { font-size: 1.1rem; }
 
   .plan-card { text-align: center; position: relative; }
-  .plan-card.featured { border-color: var(--teal-deep); }
+  .plan-card.featured { border-color: var(--teal); border-width: 2px; }
   .plan-badge {
     position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-    background: var(--teal-deep); color: #fff; font-size: 0.7rem; font-weight: 600;
+    background: var(--coral); color: #fff; font-size: 0.7rem; font-weight: 600;
     padding: 0.25rem 0.8rem; border-radius: 6px;
   }
   .plan-card .freq { font-size: 0.85rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; }
@@ -216,7 +216,7 @@
     border: 1px solid var(--line); border-radius: 6px; padding: 0.4rem 0.85rem;
     font-size: 0.82rem; background: var(--sand-2); cursor: pointer; user-select: none;
   }
-  .slot-chip.selected { background: var(--teal-deep); border-color: var(--teal-deep); color: #fff; }
+  .slot-chip.selected { background: var(--teal); border-color: var(--teal); color: #fff; }
   .slot-chip.disabled { opacity: 0.35; cursor: not-allowed; }
 
   /* student portal */
@@ -239,7 +239,7 @@
   .prof-login-card { max-width: 380px; margin: 3rem auto; }
   .tabbar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
   .tabbar button { background: var(--white); border: 1px solid var(--line); border-radius: 6px; padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 600; color: var(--ink-soft); }
-  .tabbar button.active { background: var(--ink); border-color: var(--ink); color: var(--sand); }
+  .tabbar button.active { background: var(--teal); border-color: var(--teal); color: #fff; }
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
 
