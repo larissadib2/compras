@@ -160,13 +160,14 @@
   .schedule-table th { background: var(--teal-glow); color: var(--teal-deep); }
 
   /* sobre */
-  .about-grid { display: grid; grid-template-columns: 180px 1fr; gap: 2rem; align-items: start; }
+  .about-grid { display: grid; grid-template-columns: 240px 1fr; gap: 2rem; align-items: start; }
   @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; justify-items: center; text-align: center; } }
   .about-photo {
-    width: 100%; max-width: 180px; aspect-ratio: 1; border-radius: var(--radius);
+    width: 100%; max-width: 240px; aspect-ratio: 4 / 5; border-radius: var(--radius);
     background: var(--sand-2); border: 1px solid var(--line);
-    display: block; object-fit: cover; object-position: center 20%;
+    display: block; object-fit: cover; object-position: 62% 15%;
   }
+  @media (max-width: 640px) { .about-photo { max-width: 320px; } }
   .about-highlights { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
   @media (max-width: 640px) { .about-highlights { justify-content: center; } }
   .about-highlight {
