@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team Henrique — Beach Tennis</title>
+<meta name="description" content="Team Henrique: aulas de beach tennis do aprendiz ao avançado. Marque, cancele e acompanhe sua evolução.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230e9384'/%3E%3Ctext x='16' y='21' font-family='Arial, sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3ETH%3C/text%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Team Henrique">
+<meta property="og:title" content="Team Henrique — Beach Tennis">
+<meta property="og:description" content="Beach tennis do aprendiz ao avançado. Marque sua aula experimental grátis, agende, cancele com check-in e acompanhe sua evolução.">
+<meta property="og:image" content="assets/torneio-4.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Team Henrique — Beach Tennis">
+<meta name="twitter:description" content="Beach tennis do aprendiz ao avançado. Marque sua aula experimental grátis.">
+<meta name="twitter:image" content="assets/torneio-4.jpg">
+
+<style>
+  :root {
+    --sand: #f5f3ee;
+    --sand-2: #ebe7dc;
+    --ink: #1b1c1a;
+    --ink-soft: #66655d;
+    --line: #dcd7c9;
+    --teal: #0e9384;
+    --teal-deep: #0b7566;
+    --teal-glow: #d7f5ef;
+    --coral: #e8412a;
+    --coral-deep: #c73a22;
+    --white: #ffffff;
+    --ok: #3d6b4f;
+    --warn: #93692c;
+    --danger: #a13f3f;
+    --radius: 10px;
+    --shadow: 0 6px 18px rgba(27, 28, 26, 0.06);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --sand: #17181a;
+      --sand-2: #1f2123;
+      --ink: #ece9e2;
+      --ink-soft: #a5a299;
+      --line: #33342f;
+      --teal: #14a894;
+      --teal-deep: #5eead4;
+      --teal-glow: #10302b;
+      --coral: #f2452a;
+      --coral-deep: #ffab91;
+      --white: #1f2123;
+      --ok: #6fa683;
+      --warn: #c79a56;
+      --danger: #c17777;
+      --shadow: 0 6px 18px rgba(0,0,0,0.3);
+    }
+  }
+  :root[data-theme="dark"] {
+    --sand: #17181a; --sand-2: #1f2123; --ink: #ece9e2; --ink-soft: #a5a299;
+    --line: #33342f; --teal: #14a894; --teal-deep: #5eead4; --teal-glow: #10302b;
+    --coral: #f2452a; --coral-deep: #ffab91; --white: #1f2123; --ok: #6fa683;
+    --warn: #c79a56; --danger: #c17777; --shadow: 0 6px 18px rgba(0,0,0,0.3);
+  }
+  :root[data-theme="light"] {
+    --sand: #f5f3ee; --sand-2: #ebe7dc; --ink: #1b1c1a; --ink-soft: #66655d;
+    --line: #dcd7c9; --teal: #0e9384; --teal-deep: #0b7566; --teal-glow: #d7f5ef;
+    --coral: #e8412a; --coral-deep: #c73a22; --white: #ffffff; --ok: #3d6b4f;
+    --warn: #93692c; --danger: #a13f3f; --shadow: 0 6px 18px rgba(27, 28, 26, 0.06);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--sand);
+    color: var(--ink);
+    font-family: -apple-system, "Segoe UI", Roboto, ui-sans-serif, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-weight: 700; letter-spacing: -0.01em; margin: 0 0 0.5rem; }
+  p { line-height: 1.55; color: var(--ink-soft); margin: 0 0 0.75rem; }
+  a { color: inherit; }
+  button { font: inherit; cursor: pointer; }
+  input, select, textarea { font: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 1.25rem; }
+  .hidden { display: none !important; }
+
+  /* nav */
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--sand) 90%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .topnav-inner { display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 0; gap: 1rem; }
+  .logo { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; display: flex; align-items: center; gap: 0.55rem; }
+  .logo .mark {
+    width: 28px; height: 28px; border-radius: 6px; background: var(--teal); color: #fff;
+    display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700; letter-spacing: 0;
+  }
+  .logo em { color: var(--teal-deep); font-style: normal; }
+  .nav-links { display: flex; gap: 1.3rem; font-size: 0.88rem; color: var(--ink-soft); list-style: none; padding: 0; margin: 0; }
+  .nav-links a { text-decoration: none; }
+  .nav-links a:hover { color: var(--teal-deep); }
+  @media (max-width: 720px) {
+    .topnav-inner { flex-wrap: wrap; row-gap: 0.6rem; }
+    .nav-links {
+      order: 3; width: 100%; flex-wrap: wrap; justify-content: center;
+      gap: 0.6rem 1rem; font-size: 0.82rem; padding-top: 0.6rem; border-top: 1px solid var(--line);
+    }
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+    border: 1px solid var(--ink); border-radius: 8px;
+    padding: 0.6rem 1.3rem; background: var(--ink); color: var(--sand);
+    font-weight: 600; font-size: 0.9rem;
+    transition: transform 0.16s ease, opacity 0.16s ease, box-shadow 0.16s ease;
+  }
+  .btn:hover { opacity: 0.92; transform: translateY(-2px); box-shadow: 0 8px 16px rgba(27, 28, 26, 0.16); }
+  .btn:active { transform: translateY(0) scale(0.98); }
+  .btn-coral { background: var(--coral); border-color: var(--coral); color: #fff; }
+  .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+  .btn-sm { padding: 0.4rem 0.9rem; font-size: 0.82rem; }
+  .btn-block { width: 100%; }
+  .btn[disabled] { opacity: 0.45; cursor: not-allowed; }
+
+  /* hero */
+  .hero { position: relative; padding: 3.2rem 0 2.4rem; text-align: center; overflow: hidden; }
+  .hero::before {
+    content: ""; position: absolute; inset: -15% -10% auto -10%; height: 440px; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(closest-side, color-mix(in srgb, var(--teal) 32%, transparent), transparent 72%) 18% 25% / 55% 100% no-repeat,
+      radial-gradient(closest-side, color-mix(in srgb, var(--coral) 24%, transparent), transparent 72%) 84% 32% / 50% 100% no-repeat;
+    filter: blur(46px);
+    animation: floatBlob 11s ease-in-out infinite alternate;
+  }
+  .hero > .wrap { position: relative; z-index: 1; }
+  .hero .kicker {
+    display: inline-block; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--teal-deep); background: var(--teal-glow);
+    padding: 0.35rem 0.9rem; border-radius: 6px; margin-bottom: 1rem;
+    animation: fadeInUp 0.7s ease both;
+  }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3rem); animation: fadeInUp 0.7s ease both 0.08s; }
+  .hero h1 em { color: var(--teal-deep); font-style: normal; }
+  .hero .sub { max-width: 560px; margin: 0.6rem auto 1.6rem; font-size: 1.05rem; animation: fadeInUp 0.7s ease both 0.16s; }
+  .hero-actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; animation: fadeInUp 0.7s ease both 0.24s; }
+
+  @keyframes floatBlob {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(0, 22px) scale(1.06); }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero::before { animation: none; }
+    .hero .kicker, .hero h1, .hero .sub, .hero-actions { animation: none; }
+  }
+
+  /* sections */
+  section { padding: 2.6rem 0; }
+  .section-head { text-align: center; max-width: 620px; margin: 0 auto 2rem; }
+  .section-head h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+  @media (max-width: 760px) { .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 1.5rem; box-shadow: var(--shadow);
+  }
+  .feature-card, .plan-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .feature-card:hover, .plan-card:hover {
+    transform: translateY(-5px); border-color: var(--teal);
+    box-shadow: 0 14px 28px rgba(27, 28, 26, 0.12);
+  }
+  .feature-card .icon {
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; color: var(--teal-deep);
+    margin-bottom: 0.8rem; display: block; font-variant-numeric: tabular-nums;
+  }
+  .feature-card h3 { font-size: 1.1rem; }
+
+  .plan-card { text-align: center; position: relative; }
+  .plan-card.featured { border-color: var(--teal); border-width: 2px; animation: pulseGlow 2.6s ease-in-out infinite; }
+  .plan-card.featured:hover { animation-play-state: paused; }
+  .plan-badge {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--coral); color: #fff; font-size: 0.7rem; font-weight: 600;
+    padding: 0.25rem 0.8rem; border-radius: 6px;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--teal) 35%, transparent); }
+    50% { box-shadow: 0 0 0 8px color-mix(in srgb, var(--teal) 0%, transparent); }
+  }
+
+  /* animações de entrada ao rolar */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.is-visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .plan-card.featured { animation: none; }
+    .btn:hover, .feature-card:hover, .plan-card:hover { transform: none; }
+  }
+  .plan-card .freq { font-size: 0.85rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; }
+  .plan-card .price { font-size: 2.1rem; font-weight: 700; margin: 0.4rem 0; }
+  .plan-card .price small { font-size: 0.95rem; font-weight: 600; color: var(--ink-soft); }
+
+  .schedule-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .schedule-table th, .schedule-table td { padding: 0.75rem; text-align: center; border: 1px solid var(--line); font-size: 0.9rem; }
+  .schedule-table th { background: var(--teal-glow); color: var(--teal-deep); }
+
+  /* sobre */
+  .about-grid { display: grid; grid-template-columns: 240px 1fr; gap: 2rem; align-items: start; }
+  @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; justify-items: center; text-align: center; } }
+  .about-photo {
+    width: 100%; max-width: 240px; aspect-ratio: 4 / 5; border-radius: var(--radius);
+    background: var(--sand-2); border: 1px solid var(--line);
+    display: block; object-fit: cover; object-position: 62% 15%;
+    transition: transform 0.3s ease;
+  }
+  .about-photo:hover { transform: scale(1.03) rotate(-0.5deg); }
+  @media (max-width: 640px) { .about-photo { max-width: 320px; } }
+  .about-highlights { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
+  @media (max-width: 640px) { .about-highlights { justify-content: center; } }
+  .about-highlight {
+    font-size: 0.8rem; font-weight: 600; padding: 0.35rem 0.75rem;
+    border: 1px solid var(--line); border-radius: 6px; color: var(--ink-soft); background: var(--sand-2);
+  }
+
+  /* torneio */
+  .torneio-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.7rem; margin-bottom: 1.3rem; }
+  @media (max-width: 760px) { .torneio-grid { grid-template-columns: repeat(2, 1fr); } }
+  .torneio-photo {
+    display: block; overflow: hidden; border-radius: var(--radius); border: 1px solid var(--line);
+  }
+  .torneio-grid img {
+    width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block;
+    transition: transform 0.35s ease;
+  }
+  .torneio-photo:hover img { transform: scale(1.08); }
+
+  /* popup */
+  .overlay {
+    position: fixed; inset: 0; background: rgba(20, 32, 31, 0.55); backdrop-filter: blur(2px);
+    display: flex; align-items: center; justify-content: center; z-index: 200; padding: 1rem;
+  }
+  .popup {
+    background: var(--white); border-radius: 12px; max-width: 420px; width: 100%;
+    padding: 2.2rem 1.8rem; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.22); position: relative;
+    border: 1px solid var(--line);
+  }
+  .popup .close-x {
+    position: absolute; top: 0.7rem; right: 0.9rem; background: none; border: none;
+    font-size: 1.3rem; color: var(--ink-soft); padding: 0.2rem;
+  }
+  .popup .kicker {
+    display: inline-block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--teal-deep); background: var(--teal-glow);
+    padding: 0.3rem 0.75rem; border-radius: 6px; margin-bottom: 0.9rem;
+  }
+  .popup h2 { font-size: 1.3rem; }
+  .popup p { font-size: 0.95rem; }
+
+  /* forms */
+  .field { margin-bottom: 1rem; text-align: left; }
+  .field label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.35rem; }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 0.65rem 0.8rem; border: 1px solid var(--line); border-radius: 10px;
+    background: var(--sand-2); color: var(--ink);
+  }
+  .field textarea { resize: vertical; min-height: 90px; }
+  .field-hint { font-size: 0.78rem; color: var(--ink-soft); margin-top: 0.3rem; }
+  .form-msg { font-size: 0.88rem; padding: 0.6rem 0.8rem; border-radius: 10px; margin-top: 0.8rem; display: none; }
+  .form-msg.ok { display: block; background: color-mix(in srgb, var(--ok) 15%, transparent); color: var(--ok); }
+  .form-msg.err { display: block; background: color-mix(in srgb, var(--danger) 15%, transparent); color: var(--danger); }
+
+  .slots-picker { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .slot-chip {
+    border: 1px solid var(--line); border-radius: 6px; padding: 0.4rem 0.85rem;
+    font-size: 0.82rem; background: var(--sand-2); cursor: pointer; user-select: none;
+  }
+  .slot-chip.selected { background: var(--teal); border-color: var(--teal); color: #fff; }
+  .slot-chip.disabled { opacity: 0.35; cursor: not-allowed; }
+
+  /* student portal */
+  .aula-item {
+    display: flex; align-items: center; justify-content: space-between; gap: 0.8rem;
+    padding: 0.8rem 1rem; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 0.6rem; background: var(--sand-2);
+  }
+  .aula-item .status { font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 6px; }
+  .status.confirmada { background: color-mix(in srgb, var(--ok) 18%, transparent); color: var(--ok); }
+  .status.cancelada { background: color-mix(in srgb, var(--danger) 18%, transparent); color: var(--danger); text-decoration: line-through; }
+  .status.pendente { background: color-mix(in srgb, var(--warn) 20%, transparent); color: var(--warn); }
+  .status.agendada { background: var(--sand-2); color: var(--ink-soft); }
+
+  footer { border-top: 1px solid var(--line); padding: 2rem 0; margin-top: 2rem; text-align: center; }
+  footer p { font-size: 0.85rem; }
+  .footer-wa { color: var(--teal-deep); font-weight: 700; text-decoration: none; }
+
+  /* professor area */
+  .prof-shell { max-width: 960px; }
+  .prof-login-card { max-width: 380px; margin: 3rem auto; }
+  .tabbar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .tabbar button { background: var(--white); border: 1px solid var(--line); border-radius: 6px; padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 600; color: var(--ink-soft); }
+  .tabbar button.active { background: var(--teal); border-color: var(--teal); color: #fff; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  table.data-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  table.data-table th, table.data-table td { padding: 0.65rem 0.8rem; text-align: left; border-bottom: 1px solid var(--line); font-size: 0.85rem; }
+  table.data-table th { background: var(--teal-glow); color: var(--teal-deep); }
+  table.data-table tr:last-child td { border-bottom: none; }
+
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+  @media (max-width: 640px) { .stat-row { grid-template-columns: 1fr; } }
+  .stat-card { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem 1.3rem; }
+  .stat-card .label { font-size: 0.78rem; color: var(--ink-soft); text-transform: uppercase; font-weight: 700; }
+  .stat-card .value { font-size: 1.6rem; font-weight: 700; margin-top: 0.2rem; }
+
+  .agenda-grid { width: 100%; border-collapse: collapse; }
+  .agenda-grid th, .agenda-grid td { border: 1px solid var(--line); padding: 0.5rem; font-size: 0.78rem; vertical-align: top; min-width: 120px; }
+  .agenda-grid th { background: var(--teal-glow); color: var(--teal-deep); }
+  .agenda-tag { display: block; background: var(--sand-2); border-radius: 6px; padding: 0.2rem 0.4rem; margin-bottom: 0.25rem; }
+
+  .msg-list-item { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; padding: 0.6rem 0.8rem; border: 1px solid var(--line); border-radius: 10px; margin-bottom: 0.5rem; background: var(--sand-2); font-size: 0.85rem; }
+  .pix-box { background: var(--sand-2); border: 1px dashed var(--teal); border-radius: 10px; padding: 0.8rem; font-family: ui-monospace, monospace; font-size: 0.75rem; word-break: break-all; margin-top: 0.6rem; }
+
+  .toast {
+    position: fixed; bottom: 1.2rem; left: 50%; transform: translateX(-50%);
+    background: var(--ink); color: var(--sand); padding: 0.7rem 1.2rem; border-radius: 10px;
+    font-size: 0.85rem; z-index: 300; box-shadow: var(--shadow); opacity: 0; pointer-events: none; transition: opacity 0.2s ease;
+  }
+  .toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- ============ TOPNAV ============ -->
+<div class="topnav">
+  <div class="wrap topnav-inner">
+    <div class="logo"><span class="mark">TH</span>Team <em>Henrique</em></div>
+    <ul class="nav-links">
+      <li><a href="#beneficios">Benefícios</a></li>
+      <li><a href="#planos">Planos</a></li>
+      <li><a href="#horarios">Horários</a></li>
+      <li><a href="#cadastro">Cadastre-se</a></li>
+      <li><a href="#minha-conta">Minhas aulas</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#torneio">Torneio 2025</a></li>
+    </ul>
+    <div>
+      <a href="#area-professor" class="btn btn-ghost btn-sm">Área do professor</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ POPUP: AULA GRÁTIS ============ -->
+<div class="overlay" id="popupGratis">
+  <div class="popup">
+    <button class="close-x" id="popupClose" aria-label="Fechar">✕</button>
+    <span class="kicker">Team Henrique</span>
+    <h2>Sua primeira aula é grátis</h2>
+    <p>Marque sua aula experimental gratuita com o Team Henrique e conheça a metodologia sem compromisso.</p>
+    <button class="btn btn-coral btn-block" id="popupCta">Marcar aula experimental</button>
+    <p class="field-hint" style="margin-top:0.8rem;">Você será direcionado ao WhatsApp com uma mensagem pronta. Depois, complete seu cadastro aqui no site.</p>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<div id="app">
+<section class="hero">
+  <div class="wrap">
+    <span class="kicker">Team Henrique · Beach Tennis</span>
+    <h1>Beach tennis <em>do aprendiz ao avançado</em></h1>
+    <p class="sub">Aulas para todos os níveis, com agendamento simples e acompanhamento próximo da sua evolução em quadra.</p>
+    <div class="hero-actions">
+      <button class="btn btn-coral" id="heroCta">Marcar aula experimental grátis</button>
+      <a href="#cadastro" class="btn btn-ghost">Fazer cadastro</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section id="beneficios">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Por que treinar com o Team Henrique</h2>
+    </div>
+    <div class="grid-3">
+      <div class="card feature-card reveal">
+        <span class="icon">01</span>
+        <h3>Agende em segundos</h3>
+        <p>Escolha o dia e o horário que preferir direto pelo site e garanta sua vaga na aula, sem burocracia.</p>
+      </div>
+      <div class="card feature-card reveal">
+        <span class="icon">02</span>
+        <h3>Cancele sem complicação</h3>
+        <p>Precisou faltar? Cancele com até 5 horas de antecedência e garanta a reposição da sua aula.</p>
+      </div>
+      <div class="card feature-card reveal">
+        <span class="icon">03</span>
+        <h3>Do aprendiz ao avançado</h3>
+        <p>Treinos pensados para o seu nível: turmas para quem está começando até quem já compete, no seu ritmo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HORARIOS ============ -->
+<section id="horarios">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Horários disponíveis</h2>
+      <p>Segunda a quinta-feira, das 15h às 20h.</p>
+    </div>
+    <table class="schedule-table reveal">
+      <thead><tr><th>Horário</th><th>Segunda</th><th>Terça</th><th>Quarta</th><th>Quinta</th></tr></thead>
+      <tbody id="horariosTbody"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ PLANOS ============ -->
+<section id="planos">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Planos e valores</h2>
+      <p>Escolha quantas vezes por semana você quer treinar.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card plan-card reveal">
+        <div class="freq">1x por semana</div>
+        <div class="price">R$ 190<small>/mês</small></div>
+        <p>Ideal para quem está começando.</p>
+      </div>
+      <div class="card plan-card featured reveal">
+        <div class="plan-badge">Mais popular</div>
+        <div class="freq">2x por semana</div>
+        <div class="price">R$ 330<small>/mês</small></div>
+        <p>Evolução constante com bom custo-benefício.</p>
+      </div>
+      <div class="card plan-card reveal">
+        <div class="freq">3x por semana</div>
+        <div class="price">R$ 430<small>/mês</small></div>
+        <p>Para quem quer evoluir mais rápido.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CADASTRO ============ -->
+<section id="cadastro">
+  <div class="wrap" style="max-width:560px;">
+    <div class="section-head">
+      <h2>Faça seu cadastro</h2>
+      <p>Preencha seus dados, escolha seu plano e os horários da sua aula.</p>
+    </div>
+    <div class="card reveal">
+      <form id="formCadastro">
+        <div class="field">
+          <label for="nome">Nome completo</label>
+          <input type="text" id="nome" required>
+        </div>
+        <div class="field">
+          <label for="telefone">WhatsApp</label>
+          <input type="tel" id="telefone" placeholder="(31) 90000-0000" required>
+        </div>
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" required>
+        </div>
+        <div class="field">
+          <label for="nivel">Nível</label>
+          <select id="nivel" required>
+            <option value="Aprendiz">Aprendiz</option>
+            <option value="Intermediário">Intermediário</option>
+            <option value="Avançado">Avançado</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="plano">Plano</label>
+          <select id="plano" required>
+            <option value="1">1x por semana — R$ 190/mês</option>
+            <option value="2">2x por semana — R$ 330/mês</option>
+            <option value="3">3x por semana — R$ 430/mês</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Escolha seus horários fixos <span id="planoCount">(1 horário)</span></label>
+          <div class="slots-picker" id="slotsPicker"></div>
+          <div class="field-hint">Horários de segunda a quinta, das 15h às 20h.</div>
+        </div>
+        <button type="submit" class="btn btn-coral btn-block">Cadastrar e agendar</button>
+        <div class="form-msg" id="cadastroMsg"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MINHA CONTA (aluno) ============ -->
+<section id="minha-conta">
+  <div class="wrap" style="max-width:560px;">
+    <div class="section-head">
+      <h2>Já é aluno? Veja suas aulas</h2>
+      <p>Informe o WhatsApp e e-mail usados no cadastro para acessar suas próximas aulas.</p>
+    </div>
+    <div class="card reveal" id="loginAlunoCard">
+      <div class="field">
+        <label for="alunoTelBusca">WhatsApp</label>
+        <input type="tel" id="alunoTelBusca" placeholder="(31) 90000-0000">
+      </div>
+      <div class="field">
+        <label for="alunoEmailBusca">E-mail</label>
+        <input type="email" id="alunoEmailBusca">
+      </div>
+      <button class="btn btn-block" id="btnBuscarAluno">Ver minhas aulas</button>
+      <div class="form-msg" id="buscaAlunoMsg"></div>
+    </div>
+    <div id="minhasAulasBox" class="hidden" style="margin-top:1.2rem;"></div>
+  </div>
+</section>
+
+<!-- ============ SOBRE ============ -->
+<section id="sobre">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Sobre o Team Henrique</h2>
+    </div>
+    <div class="card reveal" style="margin-bottom:1.2rem;">
+      <div class="about-grid">
+        <img class="about-photo" src="assets/henrique.jpg" alt="Henrique, professor do Team Henrique">
+        <div>
+          <h3>Henrique</h3>
+          <p>Henrique é o professor responsável pelas aulas do Team Henrique. O trabalho é focado em ensinar beach tennis de forma acessível para quem está começando e em evoluir jogadores até o nível avançado, com turmas pensadas para o ritmo de cada aluno e acompanhamento próximo em quadra.</p>
+          <div class="about-highlights">
+            <span class="about-highlight">Turmas por nível</span>
+            <span class="about-highlight">Acompanhamento individual</span>
+            <span class="about-highlight">Quadra própria</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card reveal">
+      <h3>Nossa história</h3>
+      <p>Tudo começou de forma despretensiosa. Henrique já jogava tênis havia anos quando o beach tennis surgiu no caminho, sem grandes expectativas — só para experimentar. O que era curiosidade foi virando dedicação, jogo após jogo, até ele se tornar um dos melhores jogadores do vetor norte de Belo Horizonte.</p>
+      <p>Foi na quadra de casa que tudo realmente começou: as primeiras aulas, os primeiros alunos, o início do que se tornaria o Team Henrique. Com o tempo e o crescimento da procura, o projeto ganhou um novo endereço, em uma arena em Lagoa Santa.</p>
+      <p style="margin-bottom:0;">Depois de reformar a quadra de casa, Henrique decidiu voltar às origens — dessa vez, muito melhor. Voltou com orgulho, mais tranquilidade, mais hospitalidade e, acima de tudo, com a conexão próxima com cada aluno, que sempre foi a marca do seu trabalho.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TORNEIO 2025 ============ -->
+<section id="torneio">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>O primeiro torneio Team Henrique</h2>
+      <p>2025 marcou a primeira competição organizada pelo próprio Team Henrique — e o resultado foi de virar tradição.</p>
+    </div>
+    <div class="card reveal">
+      <div class="torneio-grid">
+        <div class="torneio-photo"><img src="assets/torneio-4.jpg" alt="Alunas do Team Henrique com os troféus de campeã e vice-campeã"></div>
+        <div class="torneio-photo"><img src="assets/torneio-3.jpg" alt="Duplas se cumprimentando na quadra durante o torneio"></div>
+        <div class="torneio-photo"><img src="assets/torneio-2.jpg" alt="Grupo do Team Henrique reunido à noite com os troféus do torneio"></div>
+        <div class="torneio-photo"><img src="assets/torneio-1.jpg" alt="Henrique com a família vestindo a camisa do Team Henrique Beach Tennis"></div>
+      </div>
+      <p>Em 2025, o Team Henrique organizou seu primeiro torneio, reunindo alunos de todos os níveis em uma tarde de muita disputa, técnica e comemoração. Craques de quadra e famílias vestiram a camisa do time e disputaram partidas até a entrega dos troféus de campeãs e vice-campeãs — um dos momentos mais marcantes desde que as aulas começaram na quadra de casa.</p>
+      <p style="margin-bottom:0;">Mais do que o resultado, o torneio mostrou o espírito de equipe construído ao longo do tempo: alunos que treinam juntos, torcem juntos e comemoram juntos. Foi um sucesso tão grande que já virou tradição — o primeiro de muitos.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Team Henrique</strong> — Beach Tennis do aprendiz ao avançado</p>
+    <p><a class="footer-wa" id="footerWaLink" href="#" target="_blank" rel="noopener">Falar no WhatsApp: (31) 98214-3914</a></p>
+  </div>
+</footer>
+</div>
+
+<!-- ============ ÁREA DO PROFESSOR ============ -->
+<div id="area-professor" class="prof-shell wrap hidden" style="padding: 2.5rem 1.25rem;">
+
+  <div id="profLoginView">
+    <div class="card prof-login-card">
+      <h2 style="text-align:center;">Área do professor</h2>
+      <p style="text-align:center;">Acesso restrito. Entre com seu e-mail e senha.</p>
+      <form id="formLoginProf">
+        <div class="field">
+          <label for="profEmail">E-mail</label>
+          <input type="email" id="profEmail" required>
+        </div>
+        <div class="field">
+          <label for="profSenha">Senha</label>
+          <input type="password" id="profSenha" required>
+        </div>
+        <button type="submit" class="btn btn-coral btn-block">Entrar</button>
+        <div class="form-msg" id="loginProfMsg"></div>
+      </form>
+      <p class="field-hint" style="text-align:center; margin-top:1rem;">Primeiro acesso? Use <strong>professor@teamhenrique.com</strong> / <strong>beachtennis123</strong> e depois altere sua senha em Configurações.</p>
+    </div>
+  </div>
+
+  <div id="profPainelView" class="hidden">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:0.8rem;">
+      <h2 style="margin:0;">Painel do professor</h2>
+      <button class="btn btn-ghost btn-sm" id="btnLogoutProf">Sair</button>
+    </div>
+
+    <div class="tabbar">
+      <button data-tab="alunos" class="active">Alunos</button>
+      <button data-tab="agenda">Agenda</button>
+      <button data-tab="financeiro">Financeiro</button>
+      <button data-tab="mensagens">Mensagens</button>
+      <button data-tab="config">Configurações</button>
+    </div>
+
+    <!-- ALUNOS -->
+    <div class="tab-panel active" id="tab-alunos">
+      <div class="stat-row">
+        <div class="stat-card"><div class="label">Total de alunos</div><div class="value" id="statAlunos">0</div></div>
+        <div class="stat-card"><div class="label">Aulas/semana ativas</div><div class="value" id="statAulasSemana">0</div></div>
+        <div class="stat-card"><div class="label">Cadastros este mês</div><div class="value" id="statCadastrosMes">0</div></div>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="data-table">
+          <thead><tr><th>Nome</th><th>WhatsApp</th><th>E-mail</th><th>Nível</th><th>Plano</th><th>Horários</th><th>Cadastro</th></tr></thead>
+          <tbody id="tabelaAlunos"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- AGENDA -->
+    <div class="tab-panel" id="tab-agenda">
+      <p>Grade semanal fixa de horários (quadra única).</p>
+      <div style="overflow-x:auto;">
+        <table class="agenda-grid" id="agendaGrid"></table>
+      </div>
+      <h3 style="margin-top:1.8rem;">Check-ins das próximas 48 horas</h3>
+      <p class="field-hint" style="margin-top:-0.4rem;">O check-in libera para o aluno 24h antes da aula. Quem não confirmar aparece como "Agendada" ou "Aguardando check-in".</p>
+      <div id="listaCheckins"></div>
+      <h3 style="margin-top:1.8rem;">Cancelamentos recentes</h3>
+      <div id="listaCancelamentos"></div>
+    </div>
+
+    <!-- FINANCEIRO -->
+    <div class="tab-panel" id="tab-financeiro">
+      <div class="stat-row">
+        <div class="stat-card"><div class="label">Recebido no mês</div><div class="value" id="statRecebido">R$ 0</div></div>
+        <div class="stat-card"><div class="label">Aguardando Pix</div><div class="value" id="statAguardando">R$ 0</div></div>
+        <div class="stat-card"><div class="label">Receita mensal prevista</div><div class="value" id="statPrevista">R$ 0</div></div>
+      </div>
+      <div class="card" style="margin-bottom:1.5rem;">
+        <h3>Registrar pagamento</h3>
+        <div class="field">
+          <label for="pagAluno">Aluno</label>
+          <select id="pagAluno"></select>
+        </div>
+        <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
+          <button class="btn" id="btnPagAutomatico">Cadastrar automaticamente</button>
+          <button class="btn btn-ghost" id="btnPagPix">Gerar cobrança Pix</button>
+        </div>
+        <div id="pixResult"></div>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="data-table">
+          <thead><tr><th>Aluno</th><th>Valor</th><th>Forma</th><th>Status</th><th>Data</th><th></th></tr></thead>
+          <tbody id="tabelaPagamentos"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- MENSAGENS -->
+    <div class="tab-panel" id="tab-mensagens">
+      <div class="card">
+        <h3>Enviar mensagem para todos os alunos</h3>
+        <p>Escreva a mensagem e clique em enviar. O WhatsApp abrirá uma aba para cada aluno com o texto já pronto — o WhatsApp exige que você confirme o envio manualmente em cada conversa (não é possível disparar automaticamente sem WhatsApp Business API).</p>
+        <div class="field">
+          <label for="mensagemTexto">Mensagem</label>
+          <textarea id="mensagemTexto" placeholder="Ex: Aula de quinta-feira remarcada para 18h, confirme presença."></textarea>
+        </div>
+        <button class="btn btn-coral" id="btnEnviarTodos">Enviar para todos (<span id="qtdAlunosMsg">0</span> alunos)</button>
+        <div id="listaEnvios" style="margin-top:1rem;"></div>
+      </div>
+    </div>
+
+    <!-- CONFIG -->
+    <div class="tab-panel" id="tab-config">
+      <div class="card" style="margin-bottom:1.2rem;">
+        <h3>Alterar senha de acesso</h3>
+        <div class="field">
+          <label for="novoEmailProf">E-mail</label>
+          <input type="email" id="novoEmailProf">
+        </div>
+        <div class="field">
+          <label for="novaSenhaProf">Nova senha</label>
+          <input type="password" id="novaSenhaProf">
+        </div>
+        <button class="btn" id="btnSalvarLogin">Salvar</button>
+      </div>
+      <div class="card">
+        <h3>Dados para cobrança Pix</h3>
+        <div class="field">
+          <label for="pixChave">Chave Pix</label>
+          <input type="text" id="pixChave" placeholder="CPF, e-mail, telefone ou chave aleatória">
+        </div>
+        <div class="field">
+          <label for="pixNome">Nome do recebedor</label>
+          <input type="text" id="pixNome" placeholder="Henrique...">
+        </div>
+        <div class="field">
+          <label for="pixCidade">Cidade</label>
+          <input type="text" id="pixCidade" placeholder="BELO HORIZONTE">
+        </div>
+        <button class="btn" id="btnSalvarPix">Salvar dados Pix</button>
+        <div class="form-msg" id="pixConfigMsg"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---------------------------------------------------------------
+  // CONFIG BÁSICA
+  // ---------------------------------------------------------------
+  var PHONE_PROFESSOR = "5531982143914"; // (31) 98214-3914
+  var DIAS = [
+    { key: 1, label: "Segunda" },
+    { key: 2, label: "Terça" },
+    { key: 3, label: "Quarta" },
+    { key: 4, label: "Quinta" }
+  ];
+  var HORARIOS = ["15:00", "16:00", "17:00", "18:00", "19:00"];
+  var VALOR_PLANO = { "1": 190, "2": 330, "3": 430 };
+  var LABEL_PLANO = { "1": "1x/semana", "2": "2x/semana", "3": "3x/semana" };
+
+  var LS = {
+    alunos: "th_alunos",
+    cancelamentos: "th_cancelamentos",
+    checkins: "th_checkins",
+    pagamentos: "th_pagamentos",
+    config: "th_config",
+    profAuth: "th_prof_auth" // sessionStorage
+  };
+  var CHECKIN_JANELA_HORAS = 24;
+
+  function load(key, fallback) {
+    try {
+      var raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : fallback;
+    } catch (e) { return fallback; }
+  }
+  function save(key, value) { localStorage.setItem(key, JSON.stringify(value)); }
+  function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 8); }
+
+  function seedConfig() {
+    var cfg = load(LS.config, null);
+    if (!cfg) {
+      cfg = {
+        email: "professor@teamhenrique.com",
+        senha: "beachtennis123",
+        pixChave: "",
+        pixNome: "Team Henrique",
+        pixCidade: "BELO HORIZONTE"
+      };
+      save(LS.config, cfg);
+    }
+    return cfg;
+  }
+  seedConfig();
+
+  function toast(msg) {
+    var t = document.getElementById("toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    setTimeout(function () { t.classList.remove("show"); }, 2600);
+  }
+
+  function waLink(phoneDigits, text) {
+    return "https://wa.me/" + phoneDigits + "?text=" + encodeURIComponent(text);
+  }
+
+  function onlyDigits(s) { return (s || "").replace(/\D/g, ""); }
+
+  // ---------------------------------------------------------------
+  // ANIMAÇÃO DE ENTRADA AO ROLAR A PÁGINA
+  // ---------------------------------------------------------------
+  (function iniciarRevelacaoAoRolar() {
+    var elementos = document.querySelectorAll(".reveal");
+    if (!("IntersectionObserver" in window) || elementos.length === 0) {
+      elementos.forEach(function (el) { el.classList.add("is-visible"); });
+      return;
+    }
+    var observer = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (entrada) {
+        if (entrada.isIntersecting) {
+          entrada.target.classList.add("is-visible");
+          observer.unobserve(entrada.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    elementos.forEach(function (el) { observer.observe(el); });
+  })();
+
+  // ---------------------------------------------------------------
+  // POPUP "AULA GRÁTIS"
+  // ---------------------------------------------------------------
+  var popup = document.getElementById("popupGratis");
+  var msgExperimental = "Olá, Team Henrique. Quero agendar minha aula experimental gratuita de beach tennis.";
+
+  function irParaWhatsappExperimental() {
+    window.open(waLink(PHONE_PROFESSOR, msgExperimental), "_blank");
+  }
+
+  function fecharPopupEIrParaCadastro() {
+    popup.classList.add("hidden");
+    document.getElementById("cadastro").scrollIntoView({ behavior: "smooth" });
+  }
+
+  document.getElementById("popupCta").addEventListener("click", function () {
+    irParaWhatsappExperimental();
+    fecharPopupEIrParaCadastro();
+  });
+  document.getElementById("popupClose").addEventListener("click", function () {
+    popup.classList.add("hidden");
+  });
+  document.getElementById("heroCta").addEventListener("click", function () {
+    irParaWhatsappExperimental();
+    document.getElementById("cadastro").scrollIntoView({ behavior: "smooth" });
+  });
+  document.getElementById("footerWaLink").href = waLink(PHONE_PROFESSOR, msgExperimental);
+
+  // Popup aparece assim que o app é aberto
+  window.addEventListener("load", function () {
+    popup.classList.remove("hidden");
+  });
+
+  // ---------------------------------------------------------------
+  // HORÁRIOS (tabela pública)
+  // ---------------------------------------------------------------
+  (function renderHorariosTable() {
+    var tbody = document.getElementById("horariosTbody");
+    HORARIOS.forEach(function (h) {
+      var tr = document.createElement("tr");
+      var cells = "<td><strong>" + h + "</strong></td>";
+      DIAS.forEach(function () { cells += "<td>Disponível</td>"; });
+      tr.innerHTML = cells;
+      tbody.appendChild(tr);
+    });
+  })();
+
+  // ---------------------------------------------------------------
+  // CADASTRO DE ALUNO + ESCOLHA DE HORÁRIOS FIXOS
+  // ---------------------------------------------------------------
+  var slotsPicker = document.getElementById("slotsPicker");
+  var planoSelect = document.getElementById("plano");
+  var planoCountLabel = document.getElementById("planoCount");
+  var selectedSlots = [];
+
+  function slotKey(dia, hora) { return dia + "_" + hora; }
+
+  function ocupacaoAtual() {
+    var alunos = load(LS.alunos, []);
+    var ocupados = {};
+    alunos.forEach(function (a) {
+      (a.slots || []).forEach(function (s) {
+        var k = slotKey(s.dia, s.horario);
+        ocupados[k] = (ocupados[k] || 0) + 1;
+      });
+    });
+    return ocupados;
+  }
+
+  function renderSlotsPicker() {
+    slotsPicker.innerHTML = "";
+    var ocupados = ocupacaoAtual();
+    DIAS.forEach(function (dia) {
+      HORARIOS.forEach(function (hora) {
+        var key = slotKey(dia.key, hora);
+        var chip = document.createElement("div");
+        chip.className = "slot-chip";
+        chip.textContent = dia.label + " " + hora;
+        chip.dataset.key = key;
+        if (selectedSlots.indexOf(key) > -1) chip.classList.add("selected");
+        chip.addEventListener("click", function () {
+          var max = parseInt(planoSelect.value, 10);
+          var idx = selectedSlots.indexOf(key);
+          if (idx > -1) {
+            selectedSlots.splice(idx, 1);
+          } else {
+            if (selectedSlots.length >= max) {
+              toast("Seu plano permite " + max + " horário(s). Desmarque um para trocar.");
+              return;
+            }
+            selectedSlots.push(key);
+          }
+          renderSlotsPicker();
+        });
+        slotsPicker.appendChild(chip);
+      });
+    });
+  }
+
+  planoSelect.addEventListener("change", function () {
+    var max = parseInt(planoSelect.value, 10);
+    planoCountLabel.textContent = "(" + max + (max === 1 ? " horário)" : " horários)");
+    if (selectedSlots.length > max) selectedSlots = selectedSlots.slice(0, max);
+    renderSlotsPicker();
+  });
+  planoCountLabel.textContent = "(1 horário)";
+  renderSlotsPicker();
+
+  document.getElementById("formCadastro").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var max = parseInt(planoSelect.value, 10);
+    var msgEl = document.getElementById("cadastroMsg");
+
+    if (selectedSlots.length !== max) {
+      msgEl.className = "form-msg err";
+      msgEl.textContent = "Selecione exatamente " + max + " horário(s) para o plano escolhido.";
+      return;
+    }
+
+    var telefone = onlyDigits(document.getElementById("telefone").value);
+    var aluno = {
+      id: uid(),
+      nome: document.getElementById("nome").value.trim(),
+      telefone: telefone,
+      email: document.getElementById("email").value.trim().toLowerCase(),
+      nivel: document.getElementById("nivel").value,
+      plano: planoSelect.value,
+      slots: selectedSlots.map(function (k) {
+        var parts = k.split("_");
+        return { dia: parseInt(parts[0], 10), horario: parts[1] };
+      }),
+      criadoEm: new Date().toISOString()
+    };
+
+    var alunos = load(LS.alunos, []);
+    alunos.push(aluno);
+    save(LS.alunos, alunos);
+
+    localStorage.setItem("th_meu_aluno_id", aluno.id);
+
+    msgEl.className = "form-msg ok";
+    msgEl.textContent = "Cadastro realizado. Suas próximas aulas já estão na seção \"Minhas aulas\".";
+    document.getElementById("formCadastro").reset();
+    selectedSlots = [];
+    planoCountLabel.textContent = "(1 horário)";
+    renderSlotsPicker();
+
+    document.getElementById("alunoTelBusca").value = telefone;
+    document.getElementById("alunoEmailBusca").value = aluno.email;
+    mostrarMinhasAulas(aluno);
+    document.getElementById("minha-conta").scrollIntoView({ behavior: "smooth" });
+  });
+
+  // ---------------------------------------------------------------
+  // MINHAS AULAS (portal do aluno)
+  // ---------------------------------------------------------------
+  function proximasDatasParaSlot(diaSemana, semanas) {
+    var datas = [];
+    var hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+    for (var i = 0; i < semanas * 7 + 7; i++) {
+      var d = new Date(hoje);
+      d.setDate(hoje.getDate() + i);
+      if (d.getDay() === diaSemana) datas.push(new Date(d));
+      if (datas.length >= semanas) break;
+    }
+    return datas;
+  }
+
+  function aulaDateTime(dateObj, horario) {
+    var parts = horario.split(":");
+    var dt = new Date(dateObj);
+    dt.setHours(parseInt(parts[0], 10), parseInt(parts[1], 10), 0, 0);
+    return dt;
+  }
+
+  function isoDate(d) {
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  }
+
+  function getCancelamentos() { return load(LS.cancelamentos, []); }
+
+  function estaCancelada(alunoId, dataISO, horario) {
+    return getCancelamentos().some(function (c) {
+      return c.alunoId === alunoId && c.data === dataISO && c.horario === horario;
+    });
+  }
+
+  function getCheckins() { return load(LS.checkins, []); }
+
+  function fizCheckin(alunoId, dataISO, horario) {
+    return getCheckins().some(function (c) {
+      return c.alunoId === alunoId && c.data === dataISO && c.horario === horario;
+    });
+  }
+
+  function gerarProximasAulas(aluno, semanas) {
+    var lista = [];
+    (aluno.slots || []).forEach(function (slot) {
+      proximasDatasParaSlot(slot.dia, semanas).forEach(function (d) {
+        var dataISO = isoDate(d);
+        lista.push({
+          alunoId: aluno.id,
+          data: dataISO,
+          dataLabel: d.toLocaleDateString("pt-BR", { weekday: "long", day: "2-digit", month: "2-digit" }),
+          horario: slot.horario,
+          datetime: aulaDateTime(d, slot.horario),
+          cancelada: estaCancelada(aluno.id, dataISO, slot.horario),
+          checkin: fizCheckin(aluno.id, dataISO, slot.horario)
+        });
+      });
+    });
+    lista.sort(function (a, b) { return a.datetime - b.datetime; });
+    return lista;
+  }
+
+  function podeCancelar(aula) {
+    var limite = new Date(aula.datetime.getTime() - 5 * 60 * 60 * 1000);
+    return new Date() < limite;
+  }
+
+  function checkinLiberado(aula) {
+    var abre = new Date(aula.datetime.getTime() - CHECKIN_JANELA_HORAS * 60 * 60 * 1000);
+    var agora = new Date();
+    return agora >= abre && agora < aula.datetime;
+  }
+
+  function mostrarMinhasAulas(aluno) {
+    var box = document.getElementById("minhasAulasBox");
+    box.classList.remove("hidden");
+    var aulas = gerarProximasAulas(aluno, 4);
+    var html = '<div class="card"><h3>Olá, ' + aluno.nome.split(" ")[0] + '. Suas próximas aulas (' + LABEL_PLANO[aluno.plano] + ')</h3>';
+    if (aulas.length === 0) {
+      html += "<p>Nenhum horário cadastrado.</p>";
+    } else {
+      aulas.forEach(function (a) {
+        var podeCanc = !a.cancelada && podeCancelar(a);
+        var liberado = !a.cancelada && checkinLiberado(a);
+        var statusClasse = a.cancelada ? "cancelada" : (a.checkin ? "confirmada" : (liberado ? "pendente" : "agendada"));
+        var statusTexto = a.cancelada ? "Cancelada" : (a.checkin ? "Check-in feito" : (liberado ? "Aguardando check-in" : "Agendada"));
+        html += '<div class="aula-item">' +
+          '<span>' + a.dataLabel + " às " + a.horario + '</span>' +
+          '<div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">' +
+          '<span class="status ' + statusClasse + '">' + statusTexto + '</span>' +
+          (!a.cancelada && !a.checkin && liberado ? '<button class="btn btn-sm btn-coral btn-checkin-aula" data-data="' + a.data + '" data-horario="' + a.horario + '">Fazer check-in</button>' : "") +
+          (a.cancelada ? "" : '<button class="btn btn-sm btn-ghost btn-cancelar-aula" data-data="' + a.data + '" data-horario="' + a.horario + '" ' + (podeCanc ? "" : "disabled") + '>Cancelar</button>') +
+          "</div>" +
+          "</div>";
+      });
+      html += '<p class="field-hint">O check-in libera 24 horas antes da aula — confirme presença para garantir sua vaga. Cancelamentos são permitidos até 5 horas antes, garantindo sua reposição.</p>';
+    }
+    html += "</div>";
+    box.innerHTML = html;
+
+    box.querySelectorAll(".btn-cancelar-aula").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var cancelamentos = getCancelamentos();
+        cancelamentos.push({ alunoId: aluno.id, data: btn.dataset.data, horario: btn.dataset.horario, canceladoEm: new Date().toISOString() });
+        save(LS.cancelamentos, cancelamentos);
+        toast("Aula cancelada. Sua reposição está garantida.");
+        mostrarMinhasAulas(aluno);
+      });
+    });
+
+    box.querySelectorAll(".btn-checkin-aula").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var checkins = getCheckins();
+        checkins.push({ alunoId: aluno.id, data: btn.dataset.data, horario: btn.dataset.horario, checkinEm: new Date().toISOString() });
+        save(LS.checkins, checkins);
+        toast("Check-in feito. Sua vaga está garantida.");
+        mostrarMinhasAulas(aluno);
+      });
+    });
+  }
+
+  document.getElementById("btnBuscarAluno").addEventListener("click", function () {
+    var tel = onlyDigits(document.getElementById("alunoTelBusca").value);
+    var email = document.getElementById("alunoEmailBusca").value.trim().toLowerCase();
+    var msgEl = document.getElementById("buscaAlunoMsg");
+    var alunos = load(LS.alunos, []);
+    var aluno = alunos.find(function (a) { return a.telefone === tel && a.email === email; });
+    if (!aluno) {
+      msgEl.className = "form-msg err";
+      msgEl.textContent = "Não encontramos cadastro com esses dados. Verifique ou faça seu cadastro acima.";
+      document.getElementById("minhasAulasBox").classList.add("hidden");
+      return;
+    }
+    msgEl.className = "";
+    msgEl.textContent = "";
+    localStorage.setItem("th_meu_aluno_id", aluno.id);
+    mostrarMinhasAulas(aluno);
+  });
+
+  // Se o aluno já cadastrou neste navegador, mostra automaticamente
+  (function autoShowMinhaConta() {
+    var meuId = localStorage.getItem("th_meu_aluno_id");
+    if (!meuId) return;
+    var aluno = load(LS.alunos, []).find(function (a) { return a.id === meuId; });
+    if (aluno) {
+      document.getElementById("alunoTelBusca").value = aluno.telefone;
+      document.getElementById("alunoEmailBusca").value = aluno.email;
+      mostrarMinhasAulas(aluno);
+    }
+  })();
+
+  // =================================================================
+  // ÁREA DO PROFESSOR
+  // =================================================================
+  var profShell = document.getElementById("area-professor");
+  var appShell = document.getElementById("app");
+
+  function isHashProfessor() { return window.location.hash === "#area-professor"; }
+
+  function renderRoute() {
+    if (isHashProfessor()) {
+      appShell.classList.add("hidden");
+      profShell.classList.remove("hidden");
+      checarAuthProf();
+    } else {
+      appShell.classList.remove("hidden");
+      profShell.classList.add("hidden");
+    }
+  }
+  window.addEventListener("hashchange", renderRoute);
+  renderRoute();
+
+  function checarAuthProf() {
+    var autenticado = sessionStorage.getItem(LS.profAuth) === "1";
+    document.getElementById("profLoginView").classList.toggle("hidden", autenticado);
+    document.getElementById("profPainelView").classList.toggle("hidden", !autenticado);
+    if (autenticado) renderPainelProfessor();
+  }
+
+  document.getElementById("formLoginProf").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var cfg = load(LS.config, seedConfig());
+    var email = document.getElementById("profEmail").value.trim().toLowerCase();
+    var senha = document.getElementById("profSenha").value;
+    var msgEl = document.getElementById("loginProfMsg");
+    if (email === cfg.email.toLowerCase() && senha === cfg.senha) {
+      sessionStorage.setItem(LS.profAuth, "1");
+      msgEl.className = "";
+      checarAuthProf();
+    } else {
+      msgEl.className = "form-msg err";
+      msgEl.textContent = "E-mail ou senha incorretos.";
+    }
+  });
+
+  document.getElementById("btnLogoutProf").addEventListener("click", function () {
+    sessionStorage.removeItem(LS.profAuth);
+    checarAuthProf();
+  });
+
+  // ---- tabs ----
+  document.querySelectorAll(".tabbar button").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      document.querySelectorAll(".tabbar button").forEach(function (b) { b.classList.remove("active"); });
+      document.querySelectorAll(".tab-panel").forEach(function (p) { p.classList.remove("active"); });
+      btn.classList.add("active");
+      document.getElementById("tab-" + btn.dataset.tab).classList.add("active");
+    });
+  });
+
+  function fmtMoeda(v) {
+    return "R$ " + v.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function renderPainelProfessor() {
+    renderTabelaAlunos();
+    renderAgenda();
+    renderCheckins();
+    renderFinanceiro();
+    renderMensagens();
+    renderConfig();
+  }
+
+  // ---- ALUNOS ----
+  function renderTabelaAlunos() {
+    var alunos = load(LS.alunos, []);
+    document.getElementById("statAlunos").textContent = alunos.length;
+    var totalSlots = 0;
+    alunos.forEach(function (a) { totalSlots += (a.slots || []).length; });
+    document.getElementById("statAulasSemana").textContent = totalSlots;
+
+    var mesAtual = new Date().getMonth();
+    var anoAtual = new Date().getFullYear();
+    var cadastrosMes = alunos.filter(function (a) {
+      var d = new Date(a.criadoEm);
+      return d.getMonth() === mesAtual && d.getFullYear() === anoAtual;
+    }).length;
+    document.getElementById("statCadastrosMes").textContent = cadastrosMes;
+
+    var tbody = document.getElementById("tabelaAlunos");
+    tbody.innerHTML = "";
+    alunos.slice().reverse().forEach(function (a) {
+      var horarios = (a.slots || []).map(function (s) {
+        var dia = DIAS.find(function (d) { return d.key === s.dia; });
+        return (dia ? dia.label : "?") + " " + s.horario;
+      }).join(", ");
+      var tr = document.createElement("tr");
+      tr.innerHTML = "<td>" + a.nome + "</td>" +
+        "<td>" + a.telefone + "</td>" +
+        "<td>" + a.email + "</td>" +
+        "<td>" + a.nivel + "</td>" +
+        "<td>" + LABEL_PLANO[a.plano] + "</td>" +
+        "<td>" + horarios + "</td>" +
+        "<td>" + new Date(a.criadoEm).toLocaleDateString("pt-BR") + "</td>";
+      tbody.appendChild(tr);
+    });
+  }
+
+  // ---- AGENDA ----
+  function renderAgenda() {
+    var alunos = load(LS.alunos, []);
+    var grid = document.getElementById("agendaGrid");
+    var html = "<tr><th>Horário</th>";
+    DIAS.forEach(function (d) { html += "<th>" + d.label + "</th>"; });
+    html += "</tr>";
+    HORARIOS.forEach(function (hora) {
+      html += "<tr><td><strong>" + hora + "</strong></td>";
+      DIAS.forEach(function (dia) {
+        var nomes = alunos.filter(function (a) {
+          return (a.slots || []).some(function (s) { return s.dia === dia.key && s.horario === hora; });
+        }).map(function (a) { return a.nome; });
+        html += "<td>" + (nomes.length ? nomes.map(function (n) { return '<span class="agenda-tag">' + n + "</span>"; }).join("") : "—") + "</td>";
+      });
+      html += "</tr>";
+    });
+    grid.innerHTML = html;
+
+    var cancelamentos = getCancelamentos().slice().reverse().slice(0, 15);
+    var listaEl = document.getElementById("listaCancelamentos");
+    if (cancelamentos.length === 0) {
+      listaEl.innerHTML = "<p>Nenhum cancelamento registrado.</p>";
+    } else {
+      listaEl.innerHTML = cancelamentos.map(function (c) {
+        var aluno = alunos.find(function (a) { return a.id === c.alunoId; });
+        var nome = aluno ? aluno.nome : "Aluno removido";
+        var dataFmt = new Date(c.data + "T00:00:00").toLocaleDateString("pt-BR");
+        return '<div class="aula-item"><span>' + nome + " — " + dataFmt + " às " + c.horario + "</span><span class=\"status cancelada\">Cancelada</span></div>";
+      }).join("");
+    }
+  }
+
+  function renderCheckins() {
+    var alunos = load(LS.alunos, []);
+    var agora = new Date();
+    var horizonte = new Date(agora.getTime() + 48 * 60 * 60 * 1000);
+    var proximas = [];
+    alunos.forEach(function (aluno) {
+      gerarProximasAulas(aluno, 2).forEach(function (a) {
+        if (!a.cancelada && a.datetime >= agora && a.datetime <= horizonte) {
+          proximas.push({ aluno: aluno, aula: a });
+        }
+      });
+    });
+    proximas.sort(function (x, y) { return x.aula.datetime - y.aula.datetime; });
+
+    var el = document.getElementById("listaCheckins");
+    if (proximas.length === 0) {
+      el.innerHTML = "<p>Nenhuma aula nas próximas 48 horas.</p>";
+      return;
+    }
+    el.innerHTML = proximas.map(function (t) {
+      var liberado = checkinLiberado(t.aula);
+      var statusClasse = t.aula.checkin ? "confirmada" : (liberado ? "pendente" : "agendada");
+      var statusTexto = t.aula.checkin ? "Check-in feito" : (liberado ? "Aguardando check-in" : "Agendada");
+      return '<div class="aula-item"><span>' + t.aluno.nome + " — " + t.aula.dataLabel + " às " + t.aula.horario + '</span><span class="status ' + statusClasse + '">' + statusTexto + "</span></div>";
+    }).join("");
+  }
+
+  // ---- FINANCEIRO ----
+  function crc16(payload) {
+    var poly = 0x1021, resultado = 0xFFFF;
+    for (var i = 0; i < payload.length; i++) {
+      resultado ^= (payload.charCodeAt(i) << 8);
+      for (var j = 0; j < 8; j++) {
+        resultado = (resultado & 0x8000) ? ((resultado << 1) ^ poly) : (resultado << 1);
+        resultado &= 0xFFFF;
+      }
+    }
+    return resultado.toString(16).toUpperCase().padStart(4, "0");
+  }
+
+  function tlv(id, value) {
+    var len = String(value.length).padStart(2, "0");
+    return id + len + value;
+  }
+
+  function gerarPixCopiaCola(chave, nome, cidade, valor, txid) {
+    nome = (nome || "TEAM HENRIQUE").substring(0, 25).toUpperCase();
+    cidade = (cidade || "BELO HORIZONTE").substring(0, 15).toUpperCase();
+    txid = (txid || "***").substring(0, 25);
+    var merchantAccount = tlv("00", "br.gov.bcb.pix") + tlv("01", chave);
+    var addData = tlv("05", txid);
+    var payload =
+      tlv("00", "01") +
+      tlv("26", merchantAccount) +
+      tlv("52", "0000") +
+      tlv("53", "986") +
+      tlv("54", valor.toFixed(2)) +
+      tlv("58", "BR") +
+      tlv("59", nome) +
+      tlv("60", cidade) +
+      tlv("62", addData) +
+      "6304";
+    return payload + crc16(payload);
+  }
+
+  function renderFinanceiro() {
+    var alunos = load(LS.alunos, []);
+    var pagSelect = document.getElementById("pagAluno");
+    pagSelect.innerHTML = alunos.map(function (a) {
+      return '<option value="' + a.id + '">' + a.nome + " (" + LABEL_PLANO[a.plano] + " — " + fmtMoeda(VALOR_PLANO[a.plano]) + ")</option>";
+    }).join("");
+
+    var pagamentos = load(LS.pagamentos, []);
+    var tbody = document.getElementById("tabelaPagamentos");
+    tbody.innerHTML = "";
+    pagamentos.slice().reverse().forEach(function (p) {
+      var aluno = alunos.find(function (a) { return a.id === p.alunoId; });
+      var tr = document.createElement("tr");
+      tr.innerHTML = "<td>" + (aluno ? aluno.nome : "Aluno removido") + "</td>" +
+        "<td>" + fmtMoeda(p.valor) + "</td>" +
+        "<td>" + (p.forma === "pix" ? "Pix" : "Automático") + "</td>" +
+        "<td>" + (p.status === "pago" ? "Pago" : "Aguardando Pix") + "</td>" +
+        "<td>" + new Date(p.data).toLocaleDateString("pt-BR") + "</td>" +
+        "<td>" + (p.status !== "pago" ? '<button class="btn btn-sm" data-id="' + p.id + '">Marcar recebido</button>' : "") + "</td>";
+      tbody.appendChild(tr);
+    });
+    tbody.querySelectorAll("button[data-id]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var pagamentos = load(LS.pagamentos, []);
+        var pag = pagamentos.find(function (p) { return p.id === btn.dataset.id; });
+        if (pag) pag.status = "pago";
+        save(LS.pagamentos, pagamentos);
+        renderFinanceiro();
+        toast("Pagamento marcado como recebido.");
+      });
+    });
+
+    var mesAtual = new Date().getMonth();
+    var anoAtual = new Date().getFullYear();
+    var recebidoMes = pagamentos.filter(function (p) {
+      var d = new Date(p.data);
+      return p.status === "pago" && d.getMonth() === mesAtual && d.getFullYear() === anoAtual;
+    }).reduce(function (s, p) { return s + p.valor; }, 0);
+    var aguardando = pagamentos.filter(function (p) { return p.status !== "pago"; }).reduce(function (s, p) { return s + p.valor; }, 0);
+    var prevista = alunos.reduce(function (s, a) { return s + (VALOR_PLANO[a.plano] || 0); }, 0);
+
+    document.getElementById("statRecebido").textContent = fmtMoeda(recebidoMes);
+    document.getElementById("statAguardando").textContent = fmtMoeda(aguardando);
+    document.getElementById("statPrevista").textContent = fmtMoeda(prevista);
+  }
+
+  document.getElementById("btnPagAutomatico").addEventListener("click", function () {
+    var alunoId = document.getElementById("pagAluno").value;
+    var aluno = load(LS.alunos, []).find(function (a) { return a.id === alunoId; });
+    if (!aluno) { toast("Cadastre um aluno primeiro."); return; }
+    var pagamentos = load(LS.pagamentos, []);
+    pagamentos.push({ id: uid(), alunoId: aluno.id, valor: VALOR_PLANO[aluno.plano], forma: "automatico", status: "pago", data: new Date().toISOString() });
+    save(LS.pagamentos, pagamentos);
+    renderFinanceiro();
+    toast("Pagamento cadastrado automaticamente.");
+  });
+
+  document.getElementById("btnPagPix").addEventListener("click", function () {
+    var alunoId = document.getElementById("pagAluno").value;
+    var aluno = load(LS.alunos, []).find(function (a) { return a.id === alunoId; });
+    if (!aluno) { toast("Cadastre um aluno primeiro."); return; }
+    var cfg = load(LS.config, seedConfig());
+    if (!cfg.pixChave) {
+      document.getElementById("pixResult").innerHTML = '<p class="form-msg err" style="display:block;">Configure sua chave Pix em Configurações antes de gerar cobranças.</p>';
+      return;
+    }
+    var valor = VALOR_PLANO[aluno.plano];
+    var codigo = gerarPixCopiaCola(cfg.pixChave, cfg.pixNome, cfg.pixCidade, valor, "THENRIQUE");
+    var pagamentos = load(LS.pagamentos, []);
+    pagamentos.push({ id: uid(), alunoId: aluno.id, valor: valor, forma: "pix", status: "aguardando", data: new Date().toISOString() });
+    save(LS.pagamentos, pagamentos);
+    document.getElementById("pixResult").innerHTML =
+      '<p style="margin-top:0.8rem;">Cobrança de ' + fmtMoeda(valor) + " para " + aluno.nome + ' gerada. Copie o código Pix abaixo e envie ao aluno:</p>' +
+      '<div class="pix-box">' + codigo + '</div>' +
+      '<button class="btn btn-sm btn-ghost" id="btnCopiarPix" style="margin-top:0.5rem;">Copiar código</button>';
+    document.getElementById("btnCopiarPix").addEventListener("click", function () {
+      navigator.clipboard.writeText(codigo).then(function () { toast("Código Pix copiado."); });
+    });
+    renderFinanceiro();
+  });
+
+  // ---- MENSAGENS ----
+  function renderMensagens() {
+    var alunos = load(LS.alunos, []);
+    document.getElementById("qtdAlunosMsg").textContent = alunos.length;
+  }
+
+  document.getElementById("btnEnviarTodos").addEventListener("click", function () {
+    var texto = document.getElementById("mensagemTexto").value.trim();
+    var alunos = load(LS.alunos, []);
+    if (!texto) { toast("Escreva uma mensagem antes de enviar."); return; }
+    if (alunos.length === 0) { toast("Nenhum aluno cadastrado ainda."); return; }
+
+    var listaEl = document.getElementById("listaEnvios");
+    listaEl.innerHTML = "<p>Abrindo o WhatsApp para cada aluno. Confirme o envio em cada aba que abrir. Se o navegador bloquear os pop-ups, use os links individuais abaixo:</p>";
+
+    alunos.forEach(function (aluno, i) {
+      var link = waLink(aluno.telefone, texto);
+      var row = document.createElement("div");
+      row.className = "msg-list-item";
+      row.innerHTML = "<span>" + aluno.nome + " (" + aluno.telefone + ")</span><a class=\"btn btn-sm\" href=\"" + link + "\" target=\"_blank\" rel=\"noopener\">Enviar</a>";
+      listaEl.appendChild(row);
+      setTimeout(function () { window.open(link, "_blank"); }, i * 450);
+    });
+  });
+
+  // ---- CONFIG ----
+  function renderConfig() {
+    var cfg = load(LS.config, seedConfig());
+    document.getElementById("novoEmailProf").value = cfg.email;
+    document.getElementById("pixChave").value = cfg.pixChave || "";
+    document.getElementById("pixNome").value = cfg.pixNome || "";
+    document.getElementById("pixCidade").value = cfg.pixCidade || "";
+  }
+
+  document.getElementById("btnSalvarLogin").addEventListener("click", function () {
+    var cfg = load(LS.config, seedConfig());
+    var novoEmail = document.getElementById("novoEmailProf").value.trim();
+    var novaSenha = document.getElementById("novaSenhaProf").value;
+    if (novoEmail) cfg.email = novoEmail;
+    if (novaSenha) cfg.senha = novaSenha;
+    save(LS.config, cfg);
+    document.getElementById("novaSenhaProf").value = "";
+    toast("Dados de acesso atualizados.");
+  });
+
+  document.getElementById("btnSalvarPix").addEventListener("click", function () {
+    var cfg = load(LS.config, seedConfig());
+    cfg.pixChave = document.getElementById("pixChave").value.trim();
+    cfg.pixNome = document.getElementById("pixNome").value.trim() || "Team Henrique";
+    cfg.pixCidade = document.getElementById("pixCidade").value.trim() || "BELO HORIZONTE";
+    save(LS.config, cfg);
+    var msgEl = document.getElementById("pixConfigMsg");
+    msgEl.className = "form-msg ok";
+    msgEl.textContent = "Dados Pix salvos.";
+  });
+
+})();
+</script>
+</body>
+</html>
