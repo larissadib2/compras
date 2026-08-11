@@ -731,44 +731,6 @@
   function onlyDigits(s) { return (s || "").replace(/\D/g, ""); }
 
   // ---------------------------------------------------------------
-  // SEÇÕES QUE SÓ APARECEM AO CLICAR NO MENU
-  // ---------------------------------------------------------------
-  var SECOES_MENU = ["sobre", "torneio", "beneficios", "horarios", "planos", "cadastro", "minha-conta"];
-
-  function esconderSecoesMenu() {
-    SECOES_MENU.forEach(function (id) {
-      var el = document.getElementById(id);
-      if (el) el.classList.add("hidden");
-    });
-  }
-
-  function mostrarSecao(id) {
-    if (SECOES_MENU.indexOf(id) === -1) return;
-    esconderSecoesMenu();
-    var el = document.getElementById(id);
-    if (el) {
-      el.classList.remove("hidden");
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }
-
-  esconderSecoesMenu();
-
-  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-    var alvo = link.getAttribute("href").slice(1);
-    if (SECOES_MENU.indexOf(alvo) === -1) return;
-    link.addEventListener("click", function (e) {
-      e.preventDefault();
-      mostrarSecao(alvo);
-    });
-  });
-
-  var hashInicial = window.location.hash.replace("#", "");
-  if (SECOES_MENU.indexOf(hashInicial) > -1) {
-    mostrarSecao(hashInicial);
-  }
-
-  // ---------------------------------------------------------------
   // POPUP "AULA GRÁTIS"
   // ---------------------------------------------------------------
   var popup = document.getElementById("popupGratis");
@@ -780,7 +742,7 @@
 
   function fecharPopupEIrParaCadastro() {
     popup.classList.add("hidden");
-    mostrarSecao("cadastro");
+    document.getElementById("cadastro").scrollIntoView({ behavior: "smooth" });
   }
 
   document.getElementById("popupCta").addEventListener("click", function () {
@@ -792,7 +754,7 @@
   });
   document.getElementById("heroCta").addEventListener("click", function () {
     irParaWhatsappExperimental();
-    mostrarSecao("cadastro");
+    document.getElementById("cadastro").scrollIntoView({ behavior: "smooth" });
   });
   document.getElementById("footerWaLink").href = waLink(PHONE_PROFESSOR, msgExperimental);
 
@@ -909,7 +871,7 @@
     localStorage.setItem("th_meu_aluno_id", aluno.id);
 
     msgEl.className = "form-msg ok";
-    msgEl.textContent = "Cadastro realizado. Clique em \"Minhas aulas\", no menu, para ver suas próximas aulas.";
+    msgEl.textContent = "Cadastro realizado. Suas próximas aulas já estão na seção \"Minhas aulas\".";
     document.getElementById("formCadastro").reset();
     selectedSlots = [];
     planoCountLabel.textContent = "(1 horário)";
@@ -918,6 +880,7 @@
     document.getElementById("alunoTelBusca").value = telefone;
     document.getElementById("alunoEmailBusca").value = aluno.email;
     mostrarMinhasAulas(aluno);
+    document.getElementById("minha-conta").scrollIntoView({ behavior: "smooth" });
   });
 
   // ---------------------------------------------------------------
